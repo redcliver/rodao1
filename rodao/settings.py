@@ -60,6 +60,7 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'rodao.urls'
@@ -93,10 +94,9 @@ DATABASES = {
         'USER': 'postgres',
         'PASSWORD': '3355',
         'HOST': '127.0.0.1',
-        'PORT': '5432', # 8000 is default
+        'PORT': '', # 8000 is default
     }
 }
-DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
 
 
 # Password validation
