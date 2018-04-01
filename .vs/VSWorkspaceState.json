@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\produto"
+    "\\produto",
+    "\\rodao"
   ],
-  "SelectedNode": "\\produto\\models.py",
+  "SelectedNode": "\\rodao\\settings.py",
   "PreviewInSolutionExplorer": false
 }
