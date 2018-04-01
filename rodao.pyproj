@@ -116,7 +116,7 @@
     <Folder Include="servico\templates\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include=".Procfile">
+    <Content Include="Procfile">
       <SubType>Code</SubType>
     </Content>
     <Content Include="cliente\templates\busca_cliente.html" />
