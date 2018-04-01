@@ -116,6 +116,9 @@
     <Folder Include="servico\templates\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include=".Procfile">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="cliente\templates\busca_cliente.html" />
     <Content Include="cliente\templates\cliente_fisico.html" />
     <Content Include="cliente\templates\cliente_juridico.html" />
