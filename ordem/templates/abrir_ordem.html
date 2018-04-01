@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+{% block body %}
+{% load staticfiles %}
+<div class="container-fluid">
+    <div class="row">
+        <nav class="col-sm-3 col-md-2 hidden-xs-down bg-faded sidebar menu-lateral">
+            <ul class="nav nav-pills flex-column">
+                <li class="nav-item">
+                    <a class="nav-link active" href="/ordem">Adicionar Ordem de Serviço</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/ordem/busca">Bucscar Ordem de Serviço</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="#">Fechar Ordem de Serviço</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+<main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3 main-fundo">
+    <section class="row text-center placeholders">
+        <div class="jumbotron busca">
+            <h1>Adicionar Ordem</h1>
+            <form method="post" action="">
+                {% csrf_token %}
+                <div class="form-row">
+                    <div class="form-group col-md-10">
+                        <label for="inputName">Cliente<strong>*</strong></label>
+                        <input disabled type="text" class="form-control" id="inputName" value="{{ordem_obj.cliente_ordem}}" name="cliente_ordem">
+                    </div>
+                </div>
+                <div class="row">
+                    {% if servicos %}
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th><h3>Serviços</h3></th>
+                            </tr>
+                            <tr>
+                                <th>ID</th>
+                                <th>Servico</th>
+                                <th>Valor Un.</th>
+                                <th>Quantidade</th>
+                                <th>Valor Total</th>
+                                <th>Editar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                {% for serv_item in servicos %}
+                                <td>{{serv_item.id}}</td>
+                                <td>{{serv_item.serv_item}}</td>
+                                <td>{{serv_item.serv_item.valor}}</td>
+                                <td>{{serv_item.quantidade}}</td>
+                                <td>{{serv_item.total}}</td>
+                                <td><button class="btn btn-default" value="" name="id" type="submit">Editar</button></td>
+                                {% endfor %}
+                            </tr>
+                        </tbody>
+                    </table>
+                    {% endif %}
+                    {% if produtos %}
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th><h3>Produtos</h3></th>
+                            </tr>
+                            <tr>
+                                <th>ID</th>
+                                <th>Produto</th>
+                                <th>Valor Un.</th>
+                                <th>Quantidade</th>
+                                <th>Valor Total</th>
+                                <th>Editar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                {% for prod_item in produtos %}
+                                <td>{{prod_item.id}}</td>
+                                <td>{{prod_item.prod_item}}</td>
+                                <td>{{prod_item.prod_item.valor_venda}}</td>
+                                <td>{{prod_item.quantidade}}</td>
+                                <td>{{prod_item.total}}</td>
+                                <td><button class="btn btn-default" value="" name="id" type="submit">Editar</button></td>
+                                {% endfor %}
+                            </tr>
+                        </tbody>
+                    </table>
+                    {% endif %}
+                    <div class="col-md-4 offset-md-8">
+                        <h1>Total R$ {{ordem_obj.total}}</h1>
+                    </div>
+                    <br />
+                    <div class="col-md-4 offset-md-10">
+                        <button type="submit" class="btn btn-primary">Finalizar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+</main>
+{% endblock %}

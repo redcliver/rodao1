@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="container-fluid">
+    <div class="row">
+        <nav class="col-sm-3 col-md-2 hidden-xs-down bg-faded sidebar menu-lateral">
+            <ul class="nav nav-pills flex-column">
+                <li class="nav-item">
+                    <a class="nav-link" href="/cliente">Adicionar Cliente Fisico</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="/cliente/juridico">Adicionar Cliente Juridico</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/cliente/busca">Bucscar Cliente</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+<main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3 main-fundo">
+    <section class="row text-center placeholders">
+        <div class="jumbotron ">
+            <h1>Cliente Juridico</h1>
+            <form>
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label for="inputName">Nome Completo <strong>*</strong></label>
+                        <input type="text" class="form-control" id="inputEmail4" placeholder="Nome Completo" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputTel">Telefone</label>
+                        <input type="tel" class="form-control" id="inputPassword4" placeholder="67 3520 0000">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputCel">Celular</label>
+                        <input type="text" class="form-control" id="inputAddress" placeholder="67 9 9900 0000">
+                    </div>
+
+                    <div class="form-group col-md-8">
+                        <label for="inputEmail">E-mail</label>
+                        <input type="email" class="form-control" id="inputAddress2" placeholder="jose.silva@email.com.br">
+                    </div>
+                </div>
+                <br />
+                <button type="submit" class="btn btn-primary float-right">Salvar</button>
+            </form>
+        </div>
+    </section>
+</main>
+        {% endblock %}

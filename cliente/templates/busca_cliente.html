@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="container-fluid">
+    <div class="row">
+        <nav class="col-sm-3 col-md-2 hidden-xs-down bg-faded sidebar menu-lateral">
+            <ul class="nav nav-pills flex-column">
+                <li class="nav-item">
+                    <a class="nav-link" href="/cliente">Adicionar Cliente Fisico</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/cliente/juridico">Adicionar Cliente Juridico</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="/cliente/busca">Bucscar Cliente</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+<main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3 main-fundo">
+    <section class="row text-center placeholders">
+        <div class="jumbotron busca">
+            <div class="container">
+                <h1>Busca Cliente</h1>
+                <form method="get">
+                    <div class="form-row">
+                        <div class="form-group col-md-10">
+                            <label for="inputName">Nome<strong>*</strong></label>
+                            <input type="text" class="form-control" id="inputEmail4" placeholder="Nome Completo" name="name" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-10">
+                            <button type="submit" class="btn btn-primary float-right">Buscar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <form method="post">
+                {% csrf_token %}
+                {% if clientes %}
+                <div class="row">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Telefone</th>
+                                <th>Celular</th>
+                                <th>E-mail</th>
+                                <th>Editar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for cliente in clientes %}
+                            <tr>
+                                <td>{{cliente.nome}}</td>
+                                <td>{{cliente.telefone}}</td>
+                                <td>{{cliente.celular}}</td>
+                                <td>{{cliente.email}}</td>
+                                <td><button class="btn btn-default" value={{cliente.id}} name="id" type="submit">Editar</button></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endif %}
+            </form>
+        </div>
+    </section>
+</main>
+        {% endblock %}

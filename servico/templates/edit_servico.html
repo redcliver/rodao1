@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="container-fluid">
+    <div class="row">
+        <nav class="col-sm-3 col-md-2 hidden-xs-down bg-faded sidebar menu-lateral">
+            <ul class="nav nav-pills flex-column">
+                <li class="nav-item">
+                    <a class="nav-link " href="/servico">Adicionar Serviço</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/servico/busca">Bucscar Serviço</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">Editar Serviço</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+<main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3 main-fundo">
+    <section class="row text-center placeholders">
+        <div class="jumbotron busca">
+            <h1>Editar Cliente Físico</h1>
+            <form method="post" action="/servico/editar">
+                {% csrf_token %}
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <input type="hidden" name="id" value="{{servico_obj.id}}" />
+                        <br />
+                        <label for="inputName">Servico <strong>*</strong></label>
+                        <input type="text" class="form-control" id="inputEmail4" placeholder="Servico" value="{{servico_obj.nome}}" name="name" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputTel">Valor</label>
+                        <input type="number" class="form-control" id="inputPassword4" placeholder="R$ 00.00" value="{{servico_obj.valor}}" name="valor">
+                    </div>
+                </div>
+                <br />
+                <button type="submit" class="btn btn-primary float-right">Salvar</button>
+            </form>
+        </div>
+    </section>
+</main>
+        {% endblock %}

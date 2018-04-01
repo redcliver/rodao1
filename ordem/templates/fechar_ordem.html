@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% block body %}
+{% load staticfiles %}
+<div class="container-fluid">
+    <div class="row">
+        <nav class="col-sm-3 col-md-2 hidden-xs-down bg-faded sidebar menu-lateral">
+            <ul class="nav nav-pills flex-column">
+                <li class="nav-item">
+                    <a class="nav-link " href="/ordem">Adicionar Ordem de Servico</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="/ordem/busca">Bucscar Ordem de Servico</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="/ordem/fechar">Fechar Ordem de Servico</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+<main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3 main-fundo">
+    <section class="row text-center placeholders">
+        <div class="jumbotron busca">
+            <h1>Fechar Ordem</h1>
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-row">
+                    <div class="form-group col-md-10">
+                        <label for="inputName">Cliente<strong>*</strong></label>
+                        <select autofocus name="cliente_id" class="form-control">
+                            <option disabled selected> -- Clientes -- </option>
+                            {% for cliente in clientes %}
+                            <option value="{{cliente.id}}">{{cliente.nome}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-10">
+                        <button type="submit" class="btn btn-primary float-right">Buscar</button>
+                    </div>
+                </div>
+            </form>
+            <form method="post">
+                {% csrf_token %}
+                {% if ordens_cliente %}
+                <div class="row">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Data</th>
+                                <th>Cliente</th>
+                                <th>Total</th>
+                                <th>Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for ordens in ordens_cliente %}
+                            <tr>
+                                <td>{{ordens.id}}</td>
+                                <td>{{ordens.data_abertura|date:"d/m/Y"}}</td>
+                                <td>{{ordens.cliente_ordem}}</td>
+                                <td>{{ordens.total}}</td>
+                                <td>{{ordens.estado}}</td>
+                                <td><button class="btn btn-default" value={{ordens.id}} name="id" type="submit">Fechar</button></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endif %}
+            </form>
+        </div>
+    </section>
+</main>
+{% endblock %}
