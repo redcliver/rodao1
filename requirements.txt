@@ -3,7 +3,7 @@ astroid==1.5.3
 certifi==2017.7.27.1
 chardet==3.0.4
 colorama==0.3.9
-dj-database-url==0.4.2 
+dj-database-url
 Django==1.11.4
 gunicorn==19.7.1
 idna==2.5
