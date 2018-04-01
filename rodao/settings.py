@@ -86,16 +86,7 @@ WSGI_APPLICATION = 'rodao.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'rodao',
-        'USER': 'postgres',
-        'PASSWORD': '3355',
-        'HOST': '127.0.0.1',
-        'PORT': '', # 8000 is default
-    }
-}
+DATABASES['default'] = dj_database_url.config()
 
 
 # Password validation
@@ -139,6 +130,3 @@ STATIC_URL = '/static/'
 STATIC_ROOT = posixpath.join(*(BASE_DIR.split(os.path.sep) + ['static']))
 
 LOGIN_REDIRECT_URL = '/home'
-
-# Activate Django-Heroku.
-django_heroku.settings(locals())
