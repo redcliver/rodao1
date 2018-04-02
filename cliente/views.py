@@ -13,8 +13,8 @@ def cliente_view(request):
             mail = request.POST.get('mail')
             novo_cliente = cliente(nome=name, telefone=tel, celular=cel, email=mail)
             novo_cliente.save()
-            messages.success(request, 'Cliente salvo com sucesso')
-            return render(request, 'cliente_fisico.html', {'title':'Clientes Fisicos'})
+            msg = 'Cliente salvo com sucesso'
+            return render(request, 'cliente_fisico.html', {'title':'Clientes Fisicos', 'msg':msg})
         return render(request, 'cliente_fisico.html', {'title':'Clientes Fisicos'})
     else:
         return render(request, 'erro.html', {'title':'Erro'})
@@ -53,7 +53,8 @@ def editar(request):
             cliente_obj.celular = cliente_cel
             cliente_obj.email = cliente_email
             cliente_obj.save()
-            return render(request, 'home/index.html', {'title':'Home'})
+            msg = 'Cliente editado com sucesso'
+            return render(request, 'home/index.html', {'title':'Home', 'msg':msg})
     else:
         return render(request, 'erro.html', {'title':'Erro'})
 
