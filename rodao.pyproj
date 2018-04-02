@@ -47,6 +47,14 @@
     </Compile>
     <Compile Include="cliente\views.py" />
     <Compile Include="cliente\__init__.py" />
+    <Compile Include="funcionario\admin.py" />
+    <Compile Include="funcionario\apps.py" />
+    <Compile Include="funcionario\migrations\__init__.py" />
+    <Compile Include="funcionario\models.py" />
+    <Compile Include="funcionario\tests.py" />
+    <Compile Include="funcionario\urls.py" />
+    <Compile Include="funcionario\views.py" />
+    <Compile Include="funcionario\__init__.py" />
     <Compile Include="home\admin.py" />
     <Compile Include="home\apps.py" />
     <Compile Include="home\migrations\__init__.py" />
@@ -102,6 +110,9 @@
     <Folder Include="cliente\" />
     <Folder Include="cliente\migrations\" />
     <Folder Include="cliente\templates\" />
+    <Folder Include="funcionario\" />
+    <Folder Include="funcionario\migrations\" />
+    <Folder Include="funcionario\templates\" />
     <Folder Include="home\" />
     <Folder Include="home\migrations\" />
     <Folder Include="home\static\" />
@@ -119,6 +130,9 @@
     <Folder Include="servico\templates\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="funcionario\templates\busca_func.html" />
+    <Content Include="funcionario\templates\edit_func.html" />
+    <Content Include="funcionario\templates\funcionario.html" />
     <Content Include="Procfile">
       <SubType>Code</SubType>
     </Content>
