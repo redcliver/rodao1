@@ -22,7 +22,7 @@
     <section class="row text-center placeholders">
         <div class="jumbotron busca">
             <h1>Buscar Ordem</h1>
-            <form method="post" action="/ordem/editar">
+            <form method="post" action="/ordem/buscar">
                 {% csrf_token %}
                 <div class="form-row">
                     <div class="form-group col-md-10">
@@ -41,7 +41,7 @@
                     </div>
                 </div>
             </form>
-            <form method="post">
+            <form method="post" action="/ordem/editar">
                 {% csrf_token %}
                 {% if ordens_cliente %}
                 <div class="row">
@@ -63,7 +63,7 @@
                                 <td>{{ordens.cliente_ordem}}</td>
                                 <td>{{ordens.total}}</td>
                                 <td>{{ordens.estado}}</td>
-                                <td><button class="btn btn-default" value={{ordens.id}} name="id" type="submit">Editar</button></td>
+                                <td><button class="btn btn-default" value="{{ordens.id}}" name="ordem_id" type="submit">Editar</button></td>
                             </tr>
                             {% endfor %}
                         </tbody>
