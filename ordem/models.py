@@ -29,9 +29,8 @@ class servico_item(models.Model):
 
 class ordens(models.Model):
     ESTADO = (
-        ('1', 'Orcamento'),
-        ('2', 'Executando'),
-        ('3', 'Finalizada'),
+        ('1', 'Em Aberto'),
+        ('2', 'Finalizada'),
     )
     id = models.AutoField(primary_key=True)
     cliente_ordem = models.ForeignKey(cliente)
