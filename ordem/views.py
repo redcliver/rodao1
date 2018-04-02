@@ -14,7 +14,7 @@ def ordem(request):
         clientes = cliente.objects.all()
         servicos = servico.objects.all()
         produtos = produto.objects.all()
-        funcionarios = funcionario.object.all()
+        funcionarios = funcionario.objects.all()
         hoje = datetime.now()
         return render(request, 'ordem.html', {'title':'Ordem', 'clientes':clientes, 'servicos':servicos, 'produtos':produtos,'funcionarios':funcionarios, 'hoje':hoje})
     else:
