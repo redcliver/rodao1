@@ -42,14 +42,16 @@ def abrir(request):
             produtos = produto.objects.all()
             funcionarios = funcionario.objects.all()
             return render(request, 'abrir_ordem.html', {'title':'Abrir Ordem', 'ordem_obj':ordem_obj, 'servicos':servicos,'funcionarios':funcionarios, 'produtos':produtos})
-        elif request.method == 'POST' and request.POST.get('cliente_id') != None and request.POST.get('servico_id') != None and request.POST.get('produto_id') == None:
+        elif request.method == 'POST' and request.POST.get('cliente_id') != None and request.POST.get('servico_id') != None and request.POST.get('funcionario_id') != None and request.POST.get('produto_id') == None:
             cliente_id = request.POST.get('cliente_id')
             servico_id = request.POST.get('servico_id')
             qnt_servico = request.POST.get('qnt_servico')
+            func_id = request.POST.get('funcionario_id')
             cliente_obj = cliente.objects.filter(id=cliente_id).get()
             servico_obj = servico.objects.filter(id=servico_id).get()
+            func_obj = funcionario.objects.filter(id=func_id).get()
             total_serv = servico_obj.valor * Decimal(qnt_servico)
-            novo_servico = servico_item(serv_item = servico_obj, quantidade = qnt_servico, total = total_serv)
+            novo_servico = servico_item(serv_item = servico_obj, quantidade = qnt_servico, total = total_serv, func = func_obj)
             novo_servico.save()
             ordem_obj = ordens(cliente_ordem=cliente_obj, estado=2, total="0")
             ordem_obj.save()
