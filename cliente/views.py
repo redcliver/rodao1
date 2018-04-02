@@ -53,7 +53,7 @@ def editar(request):
             cliente_obj.celular = cliente_cel
             cliente_obj.email = cliente_email
             cliente_obj.save()
-            return render(request, 'home/home.html', {'title':'Home'})
+            return render(request, 'home/index.html', {'title':'Home'})
     else:
         return render(request, 'erro.html', {'title':'Erro'})
 
