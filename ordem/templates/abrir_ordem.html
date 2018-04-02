@@ -30,8 +30,38 @@
                         <input disabled type="text" class="form-control" id="inputName" value="{{ordem_obj.cliente_ordem}}" name="cliente_ordem">
                     </div>
                 </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputServico">Servicos</label>
+                        <select name="servico_id" class="form-control">
+                            <option disabled selected > -- Servicos -- </option>
+                            {% for servico in servicos %}
+                            <option value={{servico.id}}>{{servico.nome}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="inputServico">Qnt</label>
+                        <input type="number" class="form-control" id="inputQnt" value="1" name="qnt_servico">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputEmail">Produtos</label>
+                        <select name="produto_id" class="form-control">
+                            <option disabled selected > -- Produtos -- </option>
+                            {% for produto in produtos %}
+                            <option value={{produto.id}}>{{produto.nome}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="inputServico">Qnt</label>
+                        <input type="number" class="form-control" id="inputQnt" value="1" name="qnt_produto">
+                    </div>
+                </div>
                 <div class="row">
-                    {% if servicos %}
+                    {% if servicos1 %}
                     <table class="table">
                         <thead>
                             <tr>
@@ -48,19 +78,19 @@
                         </thead>
                         <tbody>
                             <tr>
-                                {% for serv_item in servicos %}
+                                {% for serv_item in servicos1 %}
                                 <td>{{serv_item.id}}</td>
                                 <td>{{serv_item.serv_item}}</td>
-                                <td>{{serv_item.serv_item.valor}}</td>
+                                <td>R$ {{serv_item.serv_item.valor}}</td>
                                 <td>{{serv_item.quantidade}}</td>
-                                <td>{{serv_item.total}}</td>
+                                <td>R$ {{serv_item.total}}</td>
                                 <td><button class="btn btn-default" value="" name="id" type="submit">Editar</button></td>
                                 {% endfor %}
                             </tr>
                         </tbody>
                     </table>
                     {% endif %}
-                    {% if produtos %}
+                    {% if produtos1 %}
                     <table class="table">
                         <thead>
                             <tr>
@@ -77,7 +107,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                {% for prod_item in produtos %}
+                                {% for prod_item in produtos1 %}
                                 <td>{{prod_item.id}}</td>
                                 <td>{{prod_item.prod_item}}</td>
                                 <td>{{prod_item.prod_item.valor_venda}}</td>

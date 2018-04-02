@@ -36,7 +36,9 @@ def abrir(request):
             cliente_obj = cliente.objects.filter(id=cliente_id).get()
             ordem_obj = ordens(cliente_ordem=cliente_obj, estado=2, total="0")
             ordem_obj.save()
-            return render(request, 'abrir_ordem.html', {'title':'Abrir Ordem', 'ordem_obj':ordem_obj})
+            servicos = servico.objects.all()
+            produtos = produto.objects.all()
+            return render(request, 'abrir_ordem.html', {'title':'Abrir Ordem', 'ordem_obj':ordem_obj, 'servicos':servicos, 'produtos':produtos})
         elif request.method == 'POST' and request.POST.get('cliente_id') != None and request.POST.get('servico_id') != None and request.POST.get('produto_id') == None:
             cliente_id = request.POST.get('cliente_id')
             servico_id = request.POST.get('servico_id')
@@ -51,8 +53,10 @@ def abrir(request):
             ordem_obj.serv_item.add(novo_servico)
             ordem_obj.total = novo_servico.total
             ordem_obj.save()
-            servicos = ordem_obj.serv_item.all()
-            return render(request, 'abrir_ordem.html', {'title':'Abrir Ordem', 'ordem_obj':ordem_obj, 'servicos':servicos})
+            servicos1 = ordem_obj.serv_item.all()
+            servicos = servico.objects.all()
+            produtos = produto.objects.all()
+            return render(request, 'abrir_ordem.html', {'title':'Abrir Ordem', 'ordem_obj':ordem_obj, 'servicos1':servicos1, 'servicos':servicos, 'produtos':produtos})
         elif request.method == 'POST' and request.POST.get('cliente_id') != None and request.POST.get('servico_id') == None and request.POST.get('produto_id') != None:
             cliente_id = request.POST.get('cliente_id')
             produto_id = request.POST.get('produto_id')
@@ -67,8 +71,10 @@ def abrir(request):
             ordem_obj.prod_item.add(novo_produto)
             ordem_obj.total = novo_produto.total
             ordem_obj.save()
-            produtos = ordem_obj.prod_item.all()
-            return render(request, 'abrir_ordem.html', {'title':'Abrir Ordem', 'ordem_obj':ordem_obj, 'produtos':produtos})
+            produtos1 = ordem_obj.prod_item.all()
+            servicos = servico.objects.all()
+            produtos = produto.objects.all()
+            return render(request, 'abrir_ordem.html', {'title':'Abrir Ordem', 'ordem_obj':ordem_obj, 'produtos1':produtos1, 'servicos':servicos, 'produtos':produtos})
         elif request.method == 'POST' and request.POST.get('cliente_id') != None and request.POST.get('servico_id') != None and request.POST.get('produto_id') != None:
             cliente_id = request.POST.get('cliente_id')
             produto_id = request.POST.get('produto_id')
@@ -91,9 +97,11 @@ def abrir(request):
             ordem_obj.serv_item.add(novo_servico)
             ordem_obj.total = novo_servico.total + novo_produto.total
             ordem_obj.save()
-            produtos = ordem_obj.prod_item.all()
-            servicos = ordem_obj.serv_item.all()
-            return render(request, 'abrir_ordem.html', {'title':'Abrir Ordem', 'ordem_obj':ordem_obj, 'produtos':produtos, 'servicos':servicos})
+            produtos1 = ordem_obj.prod_item.all()
+            servicos1 = ordem_obj.serv_item.all()
+            servicos = servico.objects.all()
+            produtos = produto.objects.all()
+            return render(request, 'abrir_ordem.html', {'title':'Abrir Ordem', 'ordem_obj':ordem_obj, 'produtos1':produtos1, 'servicos1':servicos1, 'produtos':produtos, 'servicos':servicos})
     else:
         return render(request, 'erro.html', {'title':'Erro'})
 
