@@ -6,5 +6,6 @@ urlpatterns = [
     url(r'^$', views.ordem),
     url(r'^busca', views.busca),
     url(r'^abrir', views.abrir),
+    url(r'^editar', views.editar),
     url(r'^fechar', views.fechar),
     ]
