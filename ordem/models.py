@@ -3,6 +3,7 @@ from django.utils import timezone
 from cliente.models import cliente
 from servico.models import servico
 from produto.models import produto
+from funcionario.models import funcionario
 
 # Create your models here.
 
@@ -19,6 +20,7 @@ class servico_item(models.Model):
     id = models.AutoField(primary_key=True)
     serv_item = models.ForeignKey(servico)
     quantidade = models.IntegerField(default='1')
+    func = models.ForeignKey(funcionario)
     total = models.DecimalField(max_digits=6, decimal_places=2)
 
     def __int__(self):
