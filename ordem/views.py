@@ -4,6 +4,7 @@ from decimal import *
 from cliente.models import cliente
 from servico.models import servico
 from produto.models import produto
+from funcionario.models import funcionario
 from ordem.models import ordens, servico_item, produto_item
 from datetime import datetime
 
@@ -13,8 +14,9 @@ def ordem(request):
         clientes = cliente.objects.all()
         servicos = servico.objects.all()
         produtos = produto.objects.all()
+        funcionarios = funcionario.object.all()
         hoje = datetime.now()
-        return render(request, 'ordem.html', {'title':'Ordem', 'clientes':clientes, 'servicos':servicos, 'produtos':produtos, 'hoje':hoje})
+        return render(request, 'ordem.html', {'title':'Ordem', 'clientes':clientes, 'servicos':servicos, 'produtos':produtos,'funcionarios':funcionarios, 'hoje':hoje})
     else:
         return render(request, 'erro.html', {'title':'Erro'})
 
