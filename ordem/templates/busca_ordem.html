@@ -30,7 +30,7 @@
                         <select autofocus name="cliente_id" class="form-control">
                             <option disabled selected> -- Clientes -- </option>
                             {% for cliente in clientes %}
-                            <option value="{{cliente.id}}">{{cliente.nome}}</option>
+                            <option value={{cliente.id}}>{{cliente.nome}}</option>
                             {% endfor %}
                         </select>
                     </div>
