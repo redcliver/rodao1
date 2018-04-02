@@ -33,12 +33,11 @@
                 <div class="form-row">
                     <div class="form-group col-md-4">
                         <!-- Trigger the modal with a button -->
-                        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Servico</button>
+                        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" id="myBtn">Servico</button>
                     </div>
                     <!-- Modal -->
-                    <div id="myModal" class="modal fade" role="dialog">
+                    <div id="myModal" class="modal" role="dialog">
                       <div class="modal-dialog">
-
                         <!-- Modal content-->
                         <div class="modal-content">
                           <div class="modal-header">
@@ -127,4 +126,11 @@
         </div>
     </section>
 </main>
+<script>
+    $(document).ready(function(){
+        $("#myBtn").click(function(){
+            $("#myModal").modal({backdrop: true});
+        });
+    });
+    </script>
 {% endblock %}
