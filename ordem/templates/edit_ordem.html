@@ -91,16 +91,16 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
                                 {% for prod_item in produtos1 %}
+                            <tr>
                                 <td>{{prod_item.id}}</td>
                                 <td>{{prod_item.prod_item}}</td>
                                 <td>{{prod_item.prod_item.valor_venda}}</td>
                                 <td>{{prod_item.quantidade}}</td>
                                 <td>{{prod_item.total}}</td>
                                 <td><button class="btn btn-default" value="" name="id" type="submit">Editar</button></td>
-                                {% endfor %}
                             </tr>
+                            {% endfor %}
                         </tbody>
                     </table>
                     {% endif %}
