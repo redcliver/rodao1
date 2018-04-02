@@ -27,7 +27,7 @@
                 <div class="form-row">
                     <div class="form-group col-md-10">
                         <label for="inputName">Cliente<strong>*</strong></label>
-                        <select autofocus name="cliente_id" class="form-control">
+                        <select autofocus name="cliente_id" class="form-control" required>
                             <option disabled selected> -- Clientes -- </option>
                             {% for cliente in clientes %}
                             <option value={{cliente.id}}>{{cliente.nome}}</option>
