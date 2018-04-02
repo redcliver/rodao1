@@ -40,7 +40,8 @@ def abrir(request):
             ordem_obj.save()
             servicos = servico.objects.all()
             produtos = produto.objects.all()
-            return render(request, 'abrir_ordem.html', {'title':'Abrir Ordem', 'ordem_obj':ordem_obj, 'servicos':servicos, 'produtos':produtos})
+            funcionarios = funcionario.objects.all()
+            return render(request, 'abrir_ordem.html', {'title':'Abrir Ordem', 'ordem_obj':ordem_obj, 'servicos':servicos,'funcionarios':funcionarios, 'produtos':produtos})
         elif request.method == 'POST' and request.POST.get('cliente_id') != None and request.POST.get('servico_id') != None and request.POST.get('produto_id') == None:
             cliente_id = request.POST.get('cliente_id')
             servico_id = request.POST.get('servico_id')

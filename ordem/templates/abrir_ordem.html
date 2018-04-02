@@ -62,9 +62,9 @@
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="inputEmail">Produtos</label>
+                            <label for="inputEmail">Funcionario</label>
                             <select name="funcionario_id" class="form-control">
-                                <option disabled selected > -- Produtos -- </option>
+                                <option disabled selected > -- Fincionarios -- </option>
                                 {% for funcionario in funcionarios %}
                                 <option value={{funcionario.id}}>{{funcionario.nome}}</option>
                                 {% endfor %}
