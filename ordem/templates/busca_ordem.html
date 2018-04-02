@@ -62,7 +62,7 @@
                                 <td>{{ordens.data_abertura|date:"d/m/Y"}}</td>
                                 <td>{{ordens.cliente_ordem}}</td>
                                 <td>{{ordens.total}}</td>
-                                <td>{{ordens.get_estado_display()}}</td>
+                                <td>{{ordens.estado()}}</td>
                                 <td><button class="btn btn-default" value="{{ordens.id}}" name="ordem_id" type="submit">Editar</button></td>
                             </tr>
                             {% endfor %}
