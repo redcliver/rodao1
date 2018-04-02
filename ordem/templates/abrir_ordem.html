@@ -9,7 +9,7 @@
                     <a class="nav-link active" href="/ordem">Adicionar Ordem de Servico</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/ordem/busca">Bucscar Ordem de Servico</a>
+                    <a class="nav-link" href="/ordem/busca">Buscar Ordem de Servico</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link " href="#">Fechar Ordem de Servico</a>
@@ -22,16 +22,14 @@
     <section class="row text-center placeholders">
         <div class="jumbotron busca">
             <h1>Editar Ordem</h1>
-            <form method="post" action="">
+            <form method="post" action="/ordem/editar">
                 {% csrf_token %}
                 <div class="form-row">
                     <div class="form-group col-md-10">
                         <label for="inputName">Cliente<strong>*</strong></label>
-                        <input disabled type="text" class="form-control" id="inputName" value="{{ordem_obj.cliente_ordem}}" name="cliente_ordem">
+                        <input disabled type="text" class="form-control" id="inputName" value={{ordem_obj.cliente_ordem}} name="cliente_ordem">
                     </div>
                 </div>
-                <form method="post" action="/ordem/editar">
-                    {% csrf_token %}
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="inputServico">Servicos</label>
