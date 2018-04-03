@@ -36,7 +36,7 @@ def abrir(request):
         if request.method == 'POST' and request.POST.get('cliente_id') != None and request.POST.get('servico_id') == None and request.POST.get('produto_id') == None:
             cliente_id = request.POST.get('cliente_id')
             cliente_obj = cliente.objects.filter(id=cliente_id).get()
-            ordem_obj = ordens(cliente_ordem=cliente_obj, estado=2, total="0")
+            ordem_obj = ordens(cliente_ordem=cliente_obj, estado=1, total="0")
             ordem_obj.save()
             produtos1 = ordem_obj.prod_item.all()
             servicos1 = ordem_obj.serv_item.all()
@@ -55,7 +55,7 @@ def abrir(request):
             total_serv = servico_obj.valor * Decimal(qnt_servico)
             novo_servico = servico_item(serv_item = servico_obj, quantidade = qnt_servico, total = total_serv, func = func_obj)
             novo_servico.save()
-            ordem_obj = ordens(cliente_ordem=cliente_obj, estado=2, total="0")
+            ordem_obj = ordens(cliente_ordem=cliente_obj, estado=1, total="0")
             ordem_obj.save()
             ordem_obj.serv_item.add(novo_servico)
             ordem_obj.total = novo_servico.total
@@ -75,7 +75,7 @@ def abrir(request):
             total_prod = produto_obj.valor_venda * Decimal(qnt_produto)
             novo_produto = produto_item(prod_item = produto_obj, quantidade = qnt_produto, total = total_prod)
             novo_produto.save()
-            ordem_obj = ordens(cliente_ordem=cliente_obj, estado=2, total="0")
+            ordem_obj = ordens(cliente_ordem=cliente_obj, estado=1, total="0")
             ordem_obj.save()
             ordem_obj.prod_item.add(novo_produto)
             ordem_obj.total = novo_produto.total
@@ -92,17 +92,19 @@ def abrir(request):
             servico_id = request.POST.get('servico_id')
             qnt_produto = request.POST.get('qnt_produto')
             qnt_servico = request.POST.get('qnt_servico')
+            func_id = request.POST.get('funcionario_id')
             cliente_obj = cliente.objects.filter(id=cliente_id).get()
             servico_obj = servico.objects.filter(id=servico_id).get()
             total_serv = servico_obj.valor * Decimal(qnt_servico)
-            novo_servico = servico_item(serv_item = servico_obj, quantidade = qnt_servico)
+            func_obj = funcionario.objects.filter(id=func_id).get()
+            novo_servico = servico_item(serv_item = servico_obj, quantidade = qnt_servico, func = func_obj)
             novo_servico.total = total_serv
             novo_servico.save()
             produto_obj = produto.objects.filter(id=produto_id).get()
             total_prod = produto_obj.valor_venda * Decimal(qnt_produto)
             novo_produto = produto_item(prod_item = produto_obj, quantidade = qnt_produto, total = total_prod)
             novo_produto.save()
-            ordem_obj = ordens(cliente_ordem=cliente_obj, estado=2, total="0")
+            ordem_obj = ordens(cliente_ordem=cliente_obj, estado=1, total="0")
             ordem_obj.save()
             ordem_obj.prod_item.add(novo_produto)
             ordem_obj.serv_item.add(novo_servico)
@@ -138,7 +140,7 @@ def fechar(request):
         clientes = cliente.objects.all()
         if request.method == 'POST' and request.POST.get('cliente_id') != None:
             cliente_id = request.POST.get('cliente_id')
-            ordens_cliente = ordens.objects.filter(cliente_ordem__id=cliente_id, estado=2).all()
+            ordens_cliente = ordens.objects.filter(cliente_ordem__id=cliente_id, estado=1).all()
             return render(request, 'fechar_ordem.html', {'title':'Fechar Ordens', 'clientes':clientes, 'ordens_cliente':ordens_cliente})
         return render(request, 'fechar_ordem.html', {'title':'Fechar Ordens', 'clientes':clientes})
     else:
