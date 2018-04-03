@@ -145,7 +145,7 @@ def fechar(request):
         elif request.method == 'POST' and request.POST.get('ordem_id') != None:
             ordem_id = request.POST.get('ordem_id')
             ordens_cliente = ordens.objects.filter(id=ordem_id).get()
-            ordens_cliente.estado = 2
+            ordens_cliente.estado = '2'
             ordens_cliente.save()
             return render(request, 'fechar_ordem.html', {'title':'Fechar Ordens', 'clientes':clientes, 'ordens_cliente':ordens_cliente})
         return render(request, 'fechar_ordem.html', {'title':'Fechar Ordens', 'clientes':clientes})
