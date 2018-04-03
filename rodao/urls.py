@@ -23,6 +23,8 @@ urlpatterns = [
     url(r'^servico/', include('servico.urls')),
     url(r'^produto/', include('produto.urls')),
     url(r'^funcionario/', include('funcionario.urls')),
+    url(r'^contas/', include('contas.urls')),
+    url(r'^caixa/', include('caixa.urls')),
     url(r'^contact$', app.views.contact, name='contact'),
     url(r'^about', app.views.about, name='about'),
     url(r'^login/$',

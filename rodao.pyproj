@@ -37,6 +37,14 @@
     <Compile Include="app\views.py" />
     <Compile Include="app\__init__.py" />
     <Compile Include="app\migrations\__init__.py" />
+    <Compile Include="caixa\admin.py" />
+    <Compile Include="caixa\apps.py" />
+    <Compile Include="caixa\migrations\__init__.py" />
+    <Compile Include="caixa\models.py" />
+    <Compile Include="caixa\tests.py" />
+    <Compile Include="caixa\urls.py" />
+    <Compile Include="caixa\views.py" />
+    <Compile Include="caixa\__init__.py" />
     <Compile Include="cliente\admin.py" />
     <Compile Include="cliente\apps.py" />
     <Compile Include="cliente\migrations\__init__.py" />
@@ -47,6 +55,16 @@
     </Compile>
     <Compile Include="cliente\views.py" />
     <Compile Include="cliente\__init__.py" />
+    <Compile Include="contas\admin.py" />
+    <Compile Include="contas\apps.py" />
+    <Compile Include="contas\migrations\__init__.py" />
+    <Compile Include="contas\models.py" />
+    <Compile Include="contas\tests.py" />
+    <Compile Include="contas\urls.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="contas\views.py" />
+    <Compile Include="contas\__init__.py" />
     <Compile Include="funcionario\admin.py" />
     <Compile Include="funcionario\apps.py" />
     <Compile Include="funcionario\migrations\__init__.py" />
@@ -107,9 +125,15 @@
     <Folder Include="app\static\app\scripts\" />
     <Folder Include="app\templates\" />
     <Folder Include="app\templates\app\" />
+    <Folder Include="caixa\" />
+    <Folder Include="caixa\migrations\" />
+    <Folder Include="caixa\templates\" />
     <Folder Include="cliente\" />
     <Folder Include="cliente\migrations\" />
     <Folder Include="cliente\templates\" />
+    <Folder Include="contas\" />
+    <Folder Include="contas\migrations\" />
+    <Folder Include="contas\templates\" />
     <Folder Include="funcionario\" />
     <Folder Include="funcionario\migrations\" />
     <Folder Include="funcionario\templates\" />
@@ -130,6 +154,11 @@
     <Folder Include="servico\templates\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="caixa\templates\caixa.html" />
+    <Content Include="contas\templates\busca_conta.html" />
+    <Content Include="contas\templates\pagar.html" />
+    <Content Include="contas\templates\edit_conta.html" />
+    <Content Include="contas\templates\conta.html" />
     <Content Include="funcionario\templates\busca_func.html" />
     <Content Include="funcionario\templates\edit_func.html" />
     <Content Include="funcionario\templates\funcionario.html" />

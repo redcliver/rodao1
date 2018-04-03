@@ -6,6 +6,7 @@ from servico.models import servico
 from produto.models import produto
 from funcionario.models import funcionario
 from ordem.models import ordens, servico_item, produto_item
+from caixa.models import caixa_geral
 from datetime import datetime
 
 # Create your views here.
@@ -138,17 +139,20 @@ def editar(request):
 def fechar(request):
     if request.user.is_authenticated():
         clientes = cliente.objects.all()
-        if request.method == 'GET' and request.POST.get('cliente_id') != None:
-            cliente_id = request.GET.get('cliente_id')
-            ordens_cliente = ordens.objects.filter(cliente_ordem__id=cliente_id, estado=1).all()
-            return render(request, 'fechar_ordem.html', {'title':'Fechar Ordens', 'clientes':clientes, 'ordens_cliente':ordens_cliente})
-        elif request.method == 'POST' and request.POST.get('ordem_id') != None:
+        ordens1 = ordens.objects.filter(estado=1).all()
+        if request.method == 'POST' and request.POST.get('ordem_id') != None:
             ordem_id = request.POST.get('ordem_id')
-            ordens_cliente = ordens.objects.get(id=ordem_id)
-            ordens_cliente.estado = 2
-            ordens_cliente.save()
-            return render(request, 'fechar_ordem.html', {'title':'Fechar Ordens', 'clientes':clientes, 'ordens_cliente':ordens_cliente})
-        return render(request, 'fechar_ordem.html', {'title':'Fechar Ordens', 'clientes':clientes})
+            ordem_obj = ordens.objects.filter(id = ordem_id).get()
+            caixa = caixa_geral.objects.latest('id')
+            total = caixa.total + ordem_obj.total
+            desc = "Ordem numero "+str(ordem_id)+"."
+            novo_caixa = caixa_geral(tipo=1, total=total, desc=desc)
+            novo_caixa.save()
+            ordem_obj.estado = 2
+            ordem_obj.save()
+            msg = "Ordem finalizada com sucesso"
+            return render(request, 'home/index.html', {'title':'Home', 'msg':msg})
+        return render(request, 'fechar_ordem.html', {'title':'Fechar Ordens', 'clientes':clientes, 'ordens1':ordens1})
     else:
         return render(request, 'erro.html', {'title':'Erro'})
 
