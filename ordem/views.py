@@ -138,8 +138,8 @@ def editar(request):
 def fechar(request):
     if request.user.is_authenticated():
         clientes = cliente.objects.all()
-        if request.method == 'POST' and request.POST.get('cliente_id') != None:
-            cliente_id = request.POST.get('cliente_id')
+        if request.method == 'GET' and request.POST.get('cliente_id') != None:
+            cliente_id = request.GET.get('cliente_id')
             ordens_cliente = ordens.objects.filter(cliente_ordem__id=cliente_id, estado=1).all()
             return render(request, 'fechar_ordem.html', {'title':'Fechar Ordens', 'clientes':clientes, 'ordens_cliente':ordens_cliente})
         elif request.method == 'POST' and request.POST.get('ordem_id') != None:
