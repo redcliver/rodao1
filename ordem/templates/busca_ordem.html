@@ -64,6 +64,7 @@
                                 <td>{{ordens.total}}</td>
                                 <td>{{ordens.get_estado_display}}</td>
                                 <td><button class="btn btn-default" value="{{ordens.id}}" name="ordem_id" type="submit">Editar</button></td>
+                                <td><button type="submit" name="ordem_id" value="{{ordens.id}}" formaction="/ordem/imprimir"><img src="{% static '/img/imprimir.png' %}" /></button></td>
                             </tr>
                             {% endfor %}
                         </tbody>

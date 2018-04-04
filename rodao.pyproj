@@ -91,6 +91,9 @@
     <Compile Include="ordem\apps.py" />
     <Compile Include="ordem\migrations\__init__.py" />
     <Compile Include="ordem\models.py" />
+    <Compile Include="ordem\printing.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="ordem\tests.py" />
     <Compile Include="ordem\urls.py" />
     <Compile Include="ordem\views.py" />

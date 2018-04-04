@@ -1,4 +1,8 @@
+from ordem.printing import MyPrint
+from io import BytesIO
 from django.shortcuts import render
+from reportlab.pdfgen import canvas
+from django.http import HttpResponse
 from django.contrib.auth import authenticate
 from decimal import *
 from cliente.models import cliente
@@ -214,3 +218,18 @@ def add_prod(request):
     else:
         return render(request, 'erro.html', {'title':'Erro'})
     
+def imprimir(request):
+    ordem_id = request.POST.get('ordem_id')
+    ordem_obj = ordens.objects.filter(id=ordem_id).get()
+    # Create the HttpResponse object with the appropriate PDF headers.
+    response = HttpResponse(content_type='application/pdf')
+    cliente = str(ordem_obj.cliente_ordem)
+    response['Content-Disposition'] = 'attachment; filename="'+cliente+'.pdf"'
+ 
+    buffer = BytesIO()
+ 
+    report = MyPrint(buffer, 'Letter')
+    pdf = report.print_users(ordem_id)
+ 
+    response.write(pdf)
+    return response
