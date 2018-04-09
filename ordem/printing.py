@@ -29,12 +29,6 @@ class MyPrint:
         # Our container for 'Flowable' objects
         elements = []
         formatted_time = time.ctime()
-        styles=getSampleStyleSheet()
-        styles.add(ParagraphStyle(name='Justify', alignment=TA_JUSTIFY))
-        ptext = '<font size=12>%s</font>' % formatted_time
- 
-        elements.append(Paragraph(ptext, styles["Normal"]))
-        elements.append(Spacer(1, 12))
         # A large collection of style sheets pre-made for us
         styles = getSampleStyleSheet()
         styles.add(ParagraphStyle(name='centered', alignment=TA_CENTER))
@@ -45,10 +39,10 @@ class MyPrint:
         im = Image("imagem.png", 0, 0)
         data = ordem_obj.data_abertura.strftime('%d/%m/%Y')
         elements.append(im)
-        elements.append(Paragraph('<b>Ordem de Serviço</b>     N°: '+str(ordem_obj.id)+'            Data: '+str(data)+'', styles['Heading2']))
+        elements.append(Paragraph('<b>Ordem de Servico</b>     N: '+str(ordem_obj.id)+' Data: '+str(data)+'', styles['Heading2']))
         elements.append(Paragraph('Nome: '+str(ordem_obj.cliente_ordem)+'   Telefone: '+str(ordem_obj.cliente_ordem.telefone)+'   Celular: '+str(ordem_obj.cliente_ordem.celular)+'', styles['Heading4']))
         elements.append(Paragraph('E-mail: '+str(ordem_obj.cliente_ordem.email)+'', styles['Heading4']))
-        elements.append(Paragraph('Serviços:', styles['Heading2']))
+        elements.append(Paragraph('Servicos:', styles['Heading2']))
         
 
         doc.build(elements, onFirstPage=self._header_footer, onLaterPages=self._header_footer,
@@ -71,7 +65,7 @@ class MyPrint:
         # Header
  
         # Footer
-        footer = Paragraph('Rodão Borracharia agradece a preferência e confiança.   ', styles['Heading2'])
+        footer = Paragraph('Rodao Borracharia agradece a preferencia e confianca.   ', styles['Heading2'])
         w, h = footer.wrap(doc.width, doc.bottomMargin)
         footer.drawOn(canvas, doc.leftMargin, h)
  
