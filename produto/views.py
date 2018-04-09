@@ -8,8 +8,10 @@ def produto1(request):
         if request.method == 'POST' and request.POST.get('name'):
             name = request.POST.get('name')
             valor_vend = request.POST.get('valor_vend')
+            valor_comp = request.POST.get('valor_comp')
             qnt = request.POST.get('qnt')
-            novo_produto = produto(nome=name, valor_venda=valor_vend, quantidade=qnt)
+            qnt_min = request.POST.get('qnt_min')
+            novo_produto = produto(nome=name, valor_venda=valor_vend, valor_compra=valor_comp, qnt_min=qnt_min, quantidade=qnt)
             novo_produto.save()
             return render(request, 'produto.html', {'title':'Produto'})
         return render(request, 'produto.html', {'title':'Produto'})
@@ -39,9 +41,13 @@ def editar1(request):
             produto_nome = request.POST.get('name')
             produto_valor = request.POST.get('valor_vend')
             produto_qnt = request.POST.get('qnt')
+            prod_valor_comp = request.POST.get('valor_comp')
+            produto_qnt_min = request.POST.get('qnt_min')
             produto_obj.nome = produto_nome
             produto_obj.valor_venda = produto_valor
             produto_obj.quantidade = produto_qnt
+            produto_obj.valor_compra = prod_valor_comp
+            produto_obj.qnt_min = produto_qnt_min
             produto_obj.save()
             return render(request, 'home.html', {'title':'Home'})
     else:
