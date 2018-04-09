@@ -1,0 +1,40 @@
+﻿{% extends 'base.html' %}
+{% block body %}
+{% load staticfiles %}
+<div class="container-fluid">
+    <div class="row">
+        <nav class="col-sm-3 col-md-2 hidden-xs-down bg-faded sidebar menu-lateral">
+            <ul class="nav nav-pills flex-column">
+                <li class="nav-item">
+                    <a class="nav-link " href="/ordem">Adicionar Ordem de Servico</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="/ordem/busca">Buscar Ordem de Servico</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="/ordem/fechar">Fechar Ordem de Servico</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+<main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3 main-fundo">
+    <section class="row text-center placeholders">
+        <div class="jumbotron busca">
+            <h1>Metodo de Pagamento</h1>
+            <form method="POST">
+                {%csrf_token%}
+                <div class="form-group col-md-10">
+                    <label for="inputName">Metodo<strong>*</strong></label>
+                    <br/>
+                    <input type="hidden" name="ordem_id" value="{{ordem_id}}" />
+                    <button type="submit" name="metodo" value="1" class="btn btn-primary">Dinheiro</button>
+                    <button type="submit" name="metodo" value="2" class="btn btn-primary">Cartao Debito</button>
+                    <button type="submit" name="metodo" value="3" class="btn btn-primary">Cartao Credito</button>
+                </div>
+            </form>
+        </div>
+    </section>
+</main>
+
+{% endblock %}

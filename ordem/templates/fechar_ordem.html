@@ -22,8 +22,7 @@
     <section class="row text-center placeholders">
         <div class="jumbotron busca">
             <h1>Fechar Ordem</h1>
-            <form method="POST">
-                {%csrf_token%}
+            <form method="GET">
                 <div class="form-row">
                     <div class="form-group col-md-10">
                         <label for="inputName">Cliente<strong>*</strong></label>
@@ -37,6 +36,7 @@
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-10">
+                        <!-- Trigger the modal with a button -->
                         <button type="submit" class="btn btn-primary float-right">Fechar</button>
                     </div>
                 </div>
@@ -44,4 +44,5 @@
         </div>
     </section>
 </main>
+
 {% endblock %}

@@ -1,9 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\produto",
-    "\\rodao"
+    "\\ordem",
+    "\\static",
+    "\\static\\img"
   ],
-  "SelectedNode": "\\rodao\\settings.py",
+  "SelectedNode": "\\ordem\\printing.py",
   "PreviewInSolutionExplorer": false
 }

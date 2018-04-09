@@ -32,14 +32,22 @@ class ordens(models.Model):
         ('1', 'Em Aberto'),
         ('2', 'Finalizada'),
     )
+    METODO = (
+        ('1', 'Dinheiro'),
+        ('2', 'Cartao Debito'),
+        ('3', 'Cartao Credito'),
+    )
     id = models.AutoField(primary_key=True)
     cliente_ordem = models.ForeignKey(cliente)
     prod_item = models.ManyToManyField(produto_item)
     serv_item = models.ManyToManyField(servico_item)
     estado = models.CharField(max_length=1, choices=ESTADO)
+    metodo = models.CharField(max_length=1, choices=METODO, null=True, blank=True)
     data_abertura = models.DateTimeField(default=timezone.now)
     data_fechamento = models.DateTimeField(null=True, blank=True)
-    desc = models.CharField(max_length=100, null=True, blank=True)
+    carro = models.CharField(max_length=100, null=True, blank=True)
+    placa = models.CharField(max_length=10, null=True, blank=True)
+    desc = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
     total = models.DecimalField(max_digits=6, decimal_places=2)
 
     def __str__(self):

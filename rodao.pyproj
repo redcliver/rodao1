@@ -165,6 +165,7 @@
     <Content Include="funcionario\templates\busca_func.html" />
     <Content Include="funcionario\templates\edit_func.html" />
     <Content Include="funcionario\templates\funcionario.html" />
+    <Content Include="ordem\templates\ver_ordem.html" />
     <Content Include="Procfile">
       <SubType>Code</SubType>
     </Content>

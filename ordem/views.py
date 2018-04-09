@@ -12,6 +12,8 @@ from funcionario.models import funcionario
 from ordem.models import ordens, servico_item, produto_item
 from caixa.models import caixa_geral
 from datetime import datetime
+from django.views.generic import View
+from django.template.loader import get_template
 
 # Create your views here.
 def ordem(request):
@@ -54,13 +56,15 @@ def abrir(request):
             servico_id = request.POST.get('servico_id')
             qnt_servico = request.POST.get('qnt_servico')
             func_id = request.POST.get('funcionario_id')
+            veiculo = request.POST.get('veiculo')
+            placa = request.POST.get('placa')
             cliente_obj = cliente.objects.filter(id=cliente_id).get()
             servico_obj = servico.objects.filter(id=servico_id).get()
             func_obj = funcionario.objects.filter(id=func_id).get()
             total_serv = servico_obj.valor * Decimal(qnt_servico)
             novo_servico = servico_item(serv_item = servico_obj, quantidade = qnt_servico, total = total_serv, func = func_obj)
             novo_servico.save()
-            ordem_obj = ordens(cliente_ordem=cliente_obj, estado=1, total="0")
+            ordem_obj = ordens(cliente_ordem=cliente_obj, estado=1,placa=placa, carro=veiculo, total="0")
             ordem_obj.save()
             ordem_obj.serv_item.add(novo_servico)
             ordem_obj.total = novo_servico.total
@@ -75,12 +79,14 @@ def abrir(request):
             cliente_id = request.POST.get('cliente_id')
             produto_id = request.POST.get('produto_id')
             qnt_produto = request.POST.get('qnt_produto')
+            veiculo = request.POST.get('veiculo')
+            placa = request.POST.get('placa')
             cliente_obj = cliente.objects.filter(id=cliente_id).get()
             produto_obj = produto.objects.filter(id=produto_id).get()
             total_prod = produto_obj.valor_venda * Decimal(qnt_produto)
             novo_produto = produto_item(prod_item = produto_obj, quantidade = qnt_produto, total = total_prod)
             novo_produto.save()
-            ordem_obj = ordens(cliente_ordem=cliente_obj, estado=1, total="0")
+            ordem_obj = ordens(cliente_ordem=cliente_obj, estado=1,placa=placa, carro=veiculo, total="0")
             ordem_obj.save()
             ordem_obj.prod_item.add(novo_produto)
             ordem_obj.total = novo_produto.total
@@ -98,6 +104,8 @@ def abrir(request):
             qnt_produto = request.POST.get('qnt_produto')
             qnt_servico = request.POST.get('qnt_servico')
             func_id = request.POST.get('funcionario_id')
+            veiculo = request.POST.get('veiculo')
+            placa = request.POST.get('placa')
             cliente_obj = cliente.objects.filter(id=cliente_id).get()
             servico_obj = servico.objects.filter(id=servico_id).get()
             total_serv = servico_obj.valor * Decimal(qnt_servico)
@@ -109,7 +117,7 @@ def abrir(request):
             total_prod = produto_obj.valor_venda * Decimal(qnt_produto)
             novo_produto = produto_item(prod_item = produto_obj, quantidade = qnt_produto, total = total_prod)
             novo_produto.save()
-            ordem_obj = ordens(cliente_ordem=cliente_obj, estado=1, total="0")
+            ordem_obj = ordens(cliente_ordem=cliente_obj, estado=1,placa=placa, carro=veiculo, total="0")
             ordem_obj.save()
             ordem_obj.prod_item.add(novo_produto)
             ordem_obj.serv_item.add(novo_servico)
@@ -144,8 +152,12 @@ def fechar(request):
     if request.user.is_authenticated():
         clientes = cliente.objects.all()
         ordens1 = ordens.objects.filter(estado=1).all()
-        if request.method == 'POST' and request.POST.get('ordem_id') != None:
+        if request.method == 'GET' and request.GET.get('ordem_id') != None:
+            ordem_id = request.GET.get('ordem_id')
+            return render(request, 'metodo_ordem.html', {'title':'Metodo', 'ordem_id':ordem_id})
+        elif request.method == 'POST' and request.POST.get('ordem_id') != None and request.POST.get('metodo') != None:
             ordem_id = request.POST.get('ordem_id')
+            metodo = request.POST.get('metodo')
             ordem_obj = ordens.objects.filter(id = ordem_id).get()
             caixa = caixa_geral.objects.latest('id')
             total = caixa.total + ordem_obj.total
@@ -153,6 +165,7 @@ def fechar(request):
             novo_caixa = caixa_geral(tipo=1, total=total, desc=desc)
             novo_caixa.save()
             ordem_obj.estado = 2
+            ordem_obj.metodo = metodo
             ordem_obj.save()
             msg = "Ordem finalizada com sucesso"
             return render(request, 'home/index.html', {'title':'Home', 'msg':msg})
@@ -233,3 +246,19 @@ def imprimir(request):
  
     response.write(pdf)
     return response
+
+def ver(request):
+    if request.user.is_authenticated():
+       if request.method == 'POST' and request.POST.get('ordem_id') != None :
+            ordem_id = request.POST.get('ordem_id')
+            cliente_id = request.POST.get('cliente_id')
+            ordem_obj = ordens.objects.filter(id = ordem_id).get()
+            produtos1 = ordem_obj.prod_item.all()
+            servicos1 = ordem_obj.serv_item.all()
+            servicos = servico.objects.all()
+            produtos = produto.objects.all()
+            funcionarios = funcionario.objects.all()
+            return render(request, 'ver_ordem.html', {'title':'Ver Ordens', 'ordem_obj':ordem_obj, 'produtos1':produtos1, 'servicos1':servicos1, 'produtos':produtos, 'servicos':servicos, 'cliente_id':cliente_id, 'funcionarios':funcionarios})
+           
+    else:
+        return render(request, 'erro.html', {'title':'Erro'})

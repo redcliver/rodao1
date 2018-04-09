@@ -7,6 +7,8 @@ class cliente(models.Model):
     telefone = models.CharField(max_length=20, null=True, blank=True)
     celular = models.CharField(max_length=20, null=True, blank=True)
     email = models.CharField(max_length=200)
+    cnpj = models.CharField(max_length=200)
+    insc = models.CharField(max_length=200)
     
     def __str__(self):
         return self.nome
