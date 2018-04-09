@@ -32,7 +32,7 @@ def busca(request):
         clientes = cliente.objects.all()
         if request.method == 'POST' and request.POST.get('cliente_id') != None:
             cliente_id = request.POST.get('cliente_id')
-            ordens_cliente = ordens.objects.filter(cliente_ordem__id=cliente_id).all()
+            ordens_cliente = ordens.objects.filter(cliente_ordem__id=cliente_id).all().order_by('-id')
             return render(request, 'busca_ordem.html', {'title':'Busca Ordens', 'clientes':clientes, 'ordens_cliente':ordens_cliente})
         return render(request, 'busca_ordem.html', {'title':'Busca Ordens', 'clientes':clientes})
     else:
