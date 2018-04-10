@@ -25,7 +25,7 @@ def ordem(request):
         hoje = datetime.now()
         return render(request, 'ordem.html', {'title':'Ordem', 'clientes':clientes, 'servicos':servicos, 'produtos':produtos,'funcionarios':funcionarios, 'hoje':hoje})
     else:
-        return render(request, 'erro.html', {'title':'Erro'})
+        return render(request, 'home/erro.html', {'title':'Erro'})
 
 def busca(request):
     if request.user.is_authenticated():
@@ -36,7 +36,7 @@ def busca(request):
             return render(request, 'busca_ordem.html', {'title':'Busca Ordens', 'clientes':clientes, 'ordens_cliente':ordens_cliente})
         return render(request, 'busca_ordem.html', {'title':'Busca Ordens', 'clientes':clientes})
     else:
-        return render(request, 'erro.html', {'title':'Erro'})
+        return render(request, 'home/erro.html', {'title':'Erro'})
 
 def abrir(request):
     if request.user.is_authenticated():
@@ -130,7 +130,7 @@ def abrir(request):
             funcionarios = funcionario.objects.all()
             return render(request, 'edit_ordem.html', {'title':'Abrir Ordem', 'ordem_obj':ordem_obj, 'produtos1':produtos1, 'servicos1':servicos1, 'produtos':produtos, 'servicos':servicos, 'cliente_id':cliente_id, 'funcionarios':funcionarios})
     else:
-        return render(request, 'erro.html', {'title':'Erro'})
+        return render(request, 'home/erro.html', {'title':'Erro'})
 
 def editar(request):
     if request.user.is_authenticated():
@@ -146,7 +146,7 @@ def editar(request):
             return render(request, 'edit_ordem.html', {'title':'Editar Ordens', 'ordem_obj':ordem_obj, 'produtos1':produtos1, 'servicos1':servicos1, 'produtos':produtos, 'servicos':servicos, 'cliente_id':cliente_id, 'funcionarios':funcionarios})
            
     else:
-        return render(request, 'erro.html', {'title':'Erro'})
+        return render(request, 'home/erro.html', {'title':'Erro'})
 
 def fechar(request):
     if request.user.is_authenticated():
@@ -171,7 +171,7 @@ def fechar(request):
             return render(request, 'home/index.html', {'title':'Home', 'msg':msg})
         return render(request, 'fechar_ordem.html', {'title':'Fechar Ordens', 'clientes':clientes, 'ordens1':ordens1})
     else:
-        return render(request, 'erro.html', {'title':'Erro'})
+        return render(request, 'home/erro.html', {'title':'Erro'})
 
 def add_serv(request):
     if request.user.is_authenticated():
@@ -201,7 +201,7 @@ def add_serv(request):
             return render(request, 'edit_ordem.html', {'title':'Abrir Ordem', 'ordem_obj':ordem_obj, 'produtos1':produtos1, 'servicos1':servicos1, 'produtos':produtos, 'servicos':servicos, 'cliente_id':cliente_id, 'funcionarios':funcionarios})
         return render(request, 'edit_ordem.html', {'title':'Editar Ordens', 'clientes':clientes})
     else:
-        return render(request, 'erro.html', {'title':'Erro'})
+        return render(request, 'home/erro.html', {'title':'Erro'})
 
 def add_prod(request):
     if request.user.is_authenticated():
@@ -229,7 +229,7 @@ def add_prod(request):
             return render(request, 'edit_ordem.html', {'title':'Abrir Ordem', 'ordem_obj':ordem_obj, 'produtos1':produtos1, 'servicos1':servicos1, 'produtos':produtos, 'servicos':servicos, 'cliente_id':cliente_id, 'funcionarios':funcionarios})
         return render(request, 'edit_ordem.html', {'title':'Editar Ordens', 'clientes':clientes})
     else:
-        return render(request, 'erro.html', {'title':'Erro'})
+        return render(request, 'home/erro.html', {'title':'Erro'})
     
 def imprimir(request):
     ordem_id = request.POST.get('ordem_id')
@@ -261,4 +261,4 @@ def ver(request):
             return render(request, 'ver_ordem.html', {'title':'Ver Ordens', 'ordem_obj':ordem_obj, 'produtos1':produtos1, 'servicos1':servicos1, 'produtos':produtos, 'servicos':servicos, 'cliente_id':cliente_id, 'funcionarios':funcionarios})
            
     else:
-        return render(request, 'erro.html', {'title':'Erro'})
+        return render(request, 'home/erro.html', {'title':'Erro'})

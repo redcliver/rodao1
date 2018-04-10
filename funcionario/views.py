@@ -15,7 +15,7 @@ def func(request):
             return render(request, 'home/index.html', {'title':'Home', 'msg':msg})
         return render(request, 'funcionario.html', {'title':'Funcionario'})
     else:
-        return render(request, 'erro.html', {'title':'Erro'})
+        return render(request, 'home/erro.html', {'title':'Erro'})
 
 def busca(request):
     if request.user.is_authenticated():
@@ -29,7 +29,7 @@ def busca(request):
             return render(request, 'edit_func.html', {'title':'Editar Funcionario', 'func_obj':func_obj})
         return render(request, 'busca_func.html', {'title':'Busca Funcionario'})
     else:
-        return render(request, 'erro.html', {'title':'Erro'})
+        return render(request, 'home/erro.html', {'title':'Erro'})
 
 def editar(request):
     if request.user.is_authenticated():
@@ -48,4 +48,4 @@ def editar(request):
             msg = 'Funcionario editado com sucesso'
             return render(request, 'home/index.html', {'title':'Home', 'msg':msg})
     else:
-        return render(request, 'erro.html', {'title':'Erro'})
+        return render(request, 'home/erro.html', {'title':'Erro'})

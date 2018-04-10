@@ -17,7 +17,7 @@ def conta1(request):
             return render(request, 'home/index.html', {'title':'Home', 'msg':msg})
         return render(request, 'conta.html', {'title':'Contas'})
     else:
-        return render(request, 'erro.html', {'title':'Erro'})
+        return render(request, 'home/erro.html', {'title':'Erro'})
 
 def busca1(request):
     if request.user.is_authenticated():
@@ -32,7 +32,7 @@ def busca1(request):
             return render(request, 'edit_conta.html', {'title':'Editar Conta', 'conta_obj':conta_obj})
         return render(request, 'busca_conta.html', {'title':'Busca Conta'})
     else:
-        return render(request, 'erro.html', {'title':'Erro'})
+        return render(request, 'home/erro.html', {'title':'Erro'})
 
 def editar1(request):
     if request.user.is_authenticated():
@@ -51,7 +51,7 @@ def editar1(request):
             msg = "Conta editada com sucesso."
             return render(request, 'home/index.html', {'title':'Home', "msg":msg})
     else:
-        return render(request, 'erro.html', {'title':'Erro'})
+        return render(request, 'home/erro.html', {'title':'Erro'})
 
 def pagar(request):
     if request.user.is_authenticated():
@@ -70,4 +70,4 @@ def pagar(request):
             return render(request, 'home/index.html', {'title':'Home', "msg":msg})
         return render(request, 'pagar.html', {'title':'Pagar Conta', 'contas':contas})
     else:
-        return render(request, 'erro.html', {'title':'Erro'})
+        return render(request, 'home/erro.html', {'title':'Erro'})

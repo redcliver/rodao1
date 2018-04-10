@@ -13,7 +13,7 @@ def servico1(request):
             return render(request, 'servico.html', {'title':'Servico'})
         return render(request, 'servico.html', {'title':'Servico'})
     else:
-        return render(request, 'erro.html', {'title':'Erro'})
+        return render(request, 'home/erro.html', {'title':'Erro'})
 
 def busca1(request):
     if request.user.is_authenticated():
@@ -28,7 +28,7 @@ def busca1(request):
             return render(request, 'edit_servico.html', {'title':'Editar Servico', 'servico_obj':servico_obj})
         return render(request, 'busca_servico.html', {'title':'Busca Servico'})
     else:
-        return render(request, 'erro.html', {'title':'Erro'})
+        return render(request, 'home/erro.html', {'title':'Erro'})
 
 def editar1(request):
     if request.user.is_authenticated():
@@ -40,6 +40,6 @@ def editar1(request):
             servico_obj.nome = servico_nome
             servico_obj.valor = servico_val
             servico_obj.save()
-            return render(request, 'home.html', {'title':'Home'})
+            return render(request, 'home/index.html', {'title':'Home'})
     else:
-        return render(request, 'erro.html', {'title':'Erro'})
+        return render(request, 'home/erro.html', {'title':'Erro'})

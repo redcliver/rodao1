@@ -16,7 +16,7 @@ def produto1(request):
             return render(request, 'produto.html', {'title':'Produto'})
         return render(request, 'produto.html', {'title':'Produto'})
     else:
-        return render(request, 'erro.html', {'title':'Erro'})
+        return render(request, 'home/erro.html', {'title':'Erro'})
 
 def busca1(request):
     if request.user.is_authenticated():
@@ -31,7 +31,7 @@ def busca1(request):
             return render(request, 'edit_produto.html', {'title':'Editar Produto', 'produto_obj':produto_obj})
         return render(request, 'busca_produto.html', {'title':'Busca Produto'})
     else:
-        return render(request, 'erro.html', {'title':'Erro'})
+        return render(request, 'home/erro.html', {'title':'Erro'})
 
 def editar1(request):
     if request.user.is_authenticated():
@@ -49,6 +49,7 @@ def editar1(request):
             produto_obj.valor_compra = prod_valor_comp
             produto_obj.qnt_min = produto_qnt_min
             produto_obj.save()
-            return render(request, 'home.html', {'title':'Home'})
+            msg = "Produto editado com sucesso."
+            return render(request, 'home/index.html', {'title':'Home', 'msg':msg})
     else:
-        return render(request, 'erro.html', {'title':'Erro'})
+        return render(request, 'home/erro.html', {'title':'Erro'})

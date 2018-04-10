@@ -14,4 +14,4 @@ def caixa1(request):
         saida = caixa_geral.objects.filter(tipo=2).count()
         return render(request, 'caixa.html', {'title':'Caixa', 'total':total, 'entrada':entrada, 'saida':saida})
     else:
-        return render(request, 'erro.html', {'title':'Erro'})
+        return render(request, 'home/erro.html', {'title':'Erro'})
