@@ -60,7 +60,8 @@
     <body>
         <div class='wrapper'>
             <div class='header'>
-                <p>{{ img }}</p>
+                {% load static %}
+                <img src="{% static 'img/cabecalho.png' %}" alt="">
             </div>
             <label class="ordem">ORDEM DE SERVIÇO</label>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<br />
             <div class='details'>
