@@ -44,7 +44,7 @@ class GeneratePdf(View):
         pdf = render_to_pdf('pdf.html', context)
         if pdf:
             response = HttpResponse(pdf, content_type='application/pdf')
-            filename = "OS_%s.pdf" %("12341231")
+            filename = "OS_%s.pdf" %(ordem_obj.cliente_ordem)
             content = "inline-block; filename='%s'" %(filename)
             download = request.GET.get("download")
             if download:
