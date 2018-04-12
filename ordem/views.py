@@ -25,6 +25,7 @@ class GeneratePdf(View):
         ordem_obj = ordens.objects.filter(id=os_id).get()
         serv_obj = ordem_obj.serv_item.all()
         prod_obj = ordem_obj.prod_item.all()
+        img = "../static/img/imagem.png"
         try:
             fechamento = ordem_obj.data_fechamento.strftime('%d/%m/%Y')
         except:
@@ -38,7 +39,7 @@ class GeneratePdf(View):
                 "ordem": ordem_obj,
                 "serv_obj": serv_obj,
                 "prod_obj": prod_obj,
-                "today": "Today",
+                "img": img,
             }
         html = template.render(context)
         pdf = render_to_pdf('pdf.html', context)
