@@ -59,7 +59,9 @@
     </head>
     <body>
         <div class='wrapper'>
-            <img src="imagem.png" alt=""/>
+            <div class='header'>
+                <img src="imagem.png" alt=""/>
+            </div>
             <label class="ordem">ORDEM DE SERVIÇO</label>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<br />
             <div class='details'>
                 <label >N°: {{ordem.id}}</label> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<label>Abertuta: {{ordem.data_abertura|date:"d/m/Y"}}</label>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<label>Fechamento: {{ordem_fechamento}}</label><br />
