@@ -41,8 +41,7 @@
                     </div>
                 </div>
             </form>
-            <form method="post">
-                {% csrf_token %}
+            <form method="GET">
                 {% if ordens_cliente %}
                 <div class="row">
                     <table class="table">

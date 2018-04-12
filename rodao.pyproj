@@ -94,6 +94,9 @@
     <Compile Include="ordem\printing.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ordem\utils.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="ordem\tests.py" />
     <Compile Include="ordem\urls.py" />
     <Compile Include="ordem\views.py" />
@@ -165,6 +168,7 @@
     <Content Include="funcionario\templates\busca_func.html" />
     <Content Include="funcionario\templates\edit_func.html" />
     <Content Include="funcionario\templates\funcionario.html" />
+    <Content Include="ordem\templates\pdf.html" />
     <Content Include="ordem\templates\ver_ordem.html" />
     <Content Include="Procfile">
       <SubType>Code</SubType>

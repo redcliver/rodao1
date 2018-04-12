@@ -14,8 +14,46 @@ from caixa.models import caixa_geral
 from datetime import datetime
 from django.views.generic import View
 from django.template.loader import get_template
-
+from .utils import render_to_pdf
+from django.utils import timezone
 # Create your views here.
+
+class GeneratePdf(View):
+    def get(self, request, *args, **kwargs):
+        template = get_template('pdf.html')
+        os_id = request.GET.get('ordem_id')
+        ordem_obj = ordens.objects.filter(id=os_id).get()
+        serv_obj = ordem_obj.serv_item.all()
+        prod_obj = ordem_obj.prod_item.all()
+        try:
+            fechamento = ordem_obj.data_fechamento.strftime('%d/%m/%Y')
+        except:
+            fechamento = " "
+        context = {
+                "ordem_cli": ordem_obj.cliente_ordem,
+                "ordem_id": ordem_obj.id,
+                "ordem_abertura": ordem_obj.data_abertura.strftime('%d/%m/%Y'),
+                "ordem_fechamento": fechamento,
+                "ordem_nome": ordem_obj.cliente_ordem,
+                "ordem": ordem_obj,
+                "serv_obj": serv_obj,
+                "prod_obj": prod_obj,
+                "today": "Today",
+            }
+        html = template.render(context)
+        pdf = render_to_pdf('pdf.html', context)
+        if pdf:
+            response = HttpResponse(pdf, content_type='application/pdf')
+            filename = "OS_%s.pdf" %("12341231")
+            content = "inline-block; filename='%s'" %(filename)
+            download = request.GET.get("download")
+            if download:
+                content = "attachment; filename='%s'" %(filename)
+            response['Content-Disposition'] = content
+            return response
+        return HttpResponse("Not found")
+        return HttpResponse(pdf, content_type='application/pdf')
+
 def ordem(request):
     if request.user.is_authenticated():
         clientes = cliente.objects.all()
@@ -156,6 +194,7 @@ def fechar(request):
             ordem_id = request.GET.get('ordem_id')
             return render(request, 'metodo_ordem.html', {'title':'Metodo', 'ordem_id':ordem_id})
         elif request.method == 'POST' and request.POST.get('ordem_id') != None and request.POST.get('metodo') != None:
+            data = timezone.now()
             ordem_id = request.POST.get('ordem_id')
             metodo = request.POST.get('metodo')
             ordem_obj = ordens.objects.filter(id = ordem_id).get()
@@ -165,6 +204,7 @@ def fechar(request):
             novo_caixa = caixa_geral(tipo=1, total=total, desc=desc)
             novo_caixa.save()
             ordem_obj.estado = 2
+            ordem_obj.data_fechamento = data
             ordem_obj.metodo = metodo
             ordem_obj.save()
             msg = "Ordem finalizada com sucesso"

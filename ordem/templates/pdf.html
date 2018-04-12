@@ -1,0 +1,133 @@
+﻿ <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+ <html>
+     <head>
+         <title>OS - {{ ordem_cli }}</title>
+         <style type="text/css">
+             body {
+                 display: inline-block;
+                 font-weight: 200;
+                 font-size: 14px;
+             }
+             .header {
+                 font-size: 20px;
+                 font-weight: 100;
+                 color: #007cae;
+             }
+             .ordem {
+                 text-decoration: underline;
+                 color: #000000;
+             }
+             .title {
+                 font-size: 22px;
+                 font-weight: 100;
+                /* text-align: right;*/
+                padding: 10px 20px 0px 20px;  
+             }
+             .title span {
+                 color: #007cae;
+             }
+             .details {
+                 padding: 2px 2px 0px 2px;
+                 text-align: left !important;
+                 /*margin-left: 40%;*/
+             }
+             .hrItem {
+                 border: none;
+                 height: 1px;
+                 /* Set the hr color */
+                 color: #333; /* old IE */
+                 background-color: #fff; /* Modern Browsers */
+             }
+             table, td, th {
+                 border: 1px solid black;
+             }
+
+             table {
+                 border-collapse: collapse;
+                 width: 100%;
+             }
+
+             th {
+                 text-align: left;
+             }
+
+             .direita{
+                 text-align:right;
+             }
+         </style>
+    </head>
+    <body>
+        <div class='wrapper'>
+            <div class='header'>
+                <p><img src="../static/img/cabecalho.png" /></p>
+            </div>
+            <label class="ordem">ORDEM DE SERVIÇO</label>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<br />
+            <div class='details'>
+                <label >N°: {{ordem.id}}</label> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<label>Abertuta: {{ordem.data_abertura|date:"d/m/Y"}}</label>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<label>Fechamento: {{ordem_fechamento}}</label><br />
+            Nome: {{ordem.cliente_ordem}}  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Telefone: {{ordem.cliente_ordem.telefone}}&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Celular: {{ordem.cliente_ordem.celular}} <br/>
+            CNPJ: {{ordem.cliente_ordem.cpnj}}&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Insc. Est.: {{ordem.cliente_ordem.insc}}&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Email: {{ordem.cliente_ordem.email}}<br/>
+            Veiculo: {{ordem.carro}}&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Placa: {{ordem.placa}}
+            <hr class='hrItem' />            
+        </div>
+            <div class="details">
+                {% if serv_obj %}
+                <label class="ordem">Serviços</label>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<br />
+                <table>
+                    <thead>
+                        <tr>
+                        <th>ID</th>
+                        <th>Serviço</th>
+                        <th>Func.</th>
+                        <th>Valor Un.</th>
+                        <th>Qnt.</th>
+                        <th>Valor T.</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            {% for serv_item in serv_obj %}
+                                <th>{{serv_item.id}}</th>
+                                <th>{{serv_item.serv_item}}</th>
+                                <th>{{serv_item.func}}</th>
+                                <th>R$ {{serv_item.serv_item.valor}}</th>
+                                <th>{{serv_item.quantidade}} Un.</th>
+                                <th>R$ {{serv_item.total}}</th>
+                            {% endfor %}
+                        </tr>
+                    </tbody>
+                </table>
+                <hr class='hrItem' />  
+                {% endif %}
+                {% if prod_obj %}
+                <label class="ordem">Produtos</label>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<br />
+                <table>
+                    <thead>
+                        <tr>
+                        <th>ID</th>
+                        <th>Produto</th>
+                        <th>Valor Un.</th>
+                        <th>Qnt.</th>
+                        <th>Valor T.</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            {% for prod_item in prod_obj %}
+                                <th>{{prod_item.id}}</th>
+                                <th>{{prod_item.prod_item}}</th>
+                                <th>R$ {{prod_item.serv_item.valor}}</th>
+                                <th>{{prod_item.quantidade}} Un.</th>
+                                <th>R$ {{prod_item.total}}</th>
+                            {% endfor %}
+                        </tr>
+                    </tbody>
+                </table>
+                <hr class='hrItem' />  
+                {% endif %}
+            </div>
+        </div>
+        <footer><h2 class="direita">Total: R$ {{ordem.total}}</h2></footer>
+        
+    </body>
+
+</html>

@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "4128b52350d67cd7bd6e710801225c6cc5baa86aaa50ece048adc3877555ac9f"
+            "sha256": "3d22f78384e7749931f24c80562ec70aebf8646184c21855a45a0868405d90ed"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -88,6 +88,19 @@
             ],
             "index": "pypi",
             "version": "==19.7.1"
+        },
+        "html5lib": {
+            "hashes": [
+                "sha256:08a3efc117a4fc8c82c3c6d10d6f58ae266428d57ed50258a1466d2cd88de745",
+                "sha256:0d5fd54d5b2b79b876007a70c033a4023577768d18022c15681c00561432a0f9"
+            ],
+            "version": "==1.0b10"
+        },
+        "httplib2": {
+            "hashes": [
+                "sha256:e71daed9a0e6373642db61166fa70beecc9bf04383477f84671348c02a04cbdf"
+            ],
+            "version": "==0.11.3"
         },
         "idna": {
             "hashes": [
@@ -253,6 +266,12 @@
             "index": "pypi",
             "version": "==1.7.2"
         },
+        "pypdf2": {
+            "hashes": [
+                "sha256:e28f902f2f0a1603ea95ebe21dff311ef09be3d0f0ef29a3e44a932729564385"
+            ],
+            "version": "==1.26.0"
+        },
         "pyserial": {
             "hashes": [
                 "sha256:6e2d401fdee0eab996cf734e67773a0143b932772ca8b42451440cfed942c627",
@@ -364,6 +383,13 @@
             "index": "pypi",
             "version": "==1.22"
         },
+        "webencodings": {
+            "hashes": [
+                "sha256:a0af1213f3c2226497a97e2b3aa01a7e4bee4f403f95be16fc9acd2947514a78",
+                "sha256:b36a1c245f2d304965eb4e0a82848379241dc04b865afcc4aab16748587e1923"
+            ],
+            "version": "==0.5.1"
+        },
         "whitenoise": {
             "hashes": [
                 "sha256:1d62a003a0ab747de96da45c831cbb512dcb7f69c1ef0bd20b1cd4ae45d8a0c4",
@@ -378,6 +404,13 @@
             ],
             "index": "pypi",
             "version": "==1.10.11"
+        },
+        "xhtml2pdf": {
+            "hashes": [
+                "sha256:61a6af82aa5bda6175fde83c246f0c82b4fa355cc0609746e982bd34db4739d9"
+            ],
+            "index": "pypi",
+            "version": "==0.2.1"
         }
     },
     "develop": {}

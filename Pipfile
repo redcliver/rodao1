@@ -32,6 +32,7 @@ whitenoise = "==3.3.0"
 wrapt = "==1.10.11"
 django-heroku = "*"
 reportlab = "*"
+"xhtml2pdf" = "*"
 
 [dev-packages]
 
