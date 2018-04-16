@@ -364,9 +364,9 @@ def total_ordem(request):
             cliente_id = request.POST.get('cliente_id')
             cliente_ord = cliente.objects.filter(id=cliente_id).get()
             tot_ordem = 0
-            for e in ordens.objects.filter(cliente_ordem__id = cliente_id).all():
+            for e in ordens.objects.filter(cliente_ordem__id = cliente_id, estado='1').all():
                 tot_ordem = tot_ordem + e.total
-            num_ordens = ordens.objects.filter(cliente_ordem = cliente_id).count()
+            num_ordens = ordens.objects.filter(cliente_ordem = cliente_id, estado='1').count()
             clientes = cliente.objects.all()
             return render(request, 'total_ordem.html', {'title':'Total em Ordens','num_ordens':num_ordens, 'cliente_ord':cliente_ord, 'cliente_id':cliente_id, 'tot_ordem':tot_ordem, 'clientes':clientes})
            
