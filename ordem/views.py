@@ -176,7 +176,7 @@ def abrir(request):
 
 def editar(request):
     if request.user.is_authenticated():
-       if request.method == 'GET' and request.POST.get('ordem_id') != None :
+       if request.method == 'GET' and request.GET.get('ordem_id') != None :
             ordem_id = request.GET.get('ordem_id')
             cliente_id = request.GET.get('cliente_id')
             ordem_obj = ordens.objects.filter(id = ordem_id).get()
