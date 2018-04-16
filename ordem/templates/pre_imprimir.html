@@ -28,9 +28,9 @@
             <form method="GET" action="/ordem/imprimir">
                 <input type="hidden" name="ordem_id" value="{{ordem_id}}" />
                 <div class="form-row">
-                    <div class="form-group col-md-10">
-                        <label for="inputName">Cliente<strong>*</strong></label><br/>
-                        <input type="text" name="nome_orc" /><br/>
+                    <div class="form-group col-md-12">
+                        <label for="inputName">Nome Completo <strong>*</strong></label>
+                        <input type="text" class="form-control" id="inputEmail4" placeholder="Nome Completo" name="nome_orc" required>
                         <button type="submit" class="btn btn-primary float-right">Imprimir</button>
                     </div>
                 </div>
