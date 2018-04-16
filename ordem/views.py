@@ -357,3 +357,15 @@ def ver(request):
            
     else:
         return render(request, 'home/erro.html', {'title':'Erro'})
+
+def total_ordem(request):
+    if request.user.is_authenticated():
+       if request.method == 'POST' and request.POST.get('cliente_id') != None :
+            cliente_id = request.POST.get('cliente_id')
+            ordem_obj = ordens.objects.filter(cliente_ordem = cliente_id).all()
+            cli_ordem = ordem_obj.cliente_ordem
+            num_ordens = ordens.objects.filter(cliente_ordem = cliente_id).count()
+            return render(request, 'ver_ordem.html', {'title':'Ver Ordens','num_ordens':num_ordens, 'cli_ordem':cli_ordem, 'cliente_id':cliente_id})
+           
+    else:
+        return render(request, 'home/erro.html', {'title':'Erro'})

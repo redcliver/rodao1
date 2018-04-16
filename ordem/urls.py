@@ -14,5 +14,6 @@ urlpatterns = [
     url(r'^ver', views.ver),
     url(r'^add_serv', views.add_serv),
     url(r'^add_prod', views.add_prod),
+    url(r'^total_ordem', views.total_ordem),
     url(r'^fechar', views.fechar),
     ]
