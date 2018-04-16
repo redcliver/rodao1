@@ -363,7 +363,7 @@ def total_ordem(request):
        if request.method == 'POST' and request.POST.get('cliente_id') != None :
             cliente_id = request.POST.get('cliente_id')
             cliente_ord = cliente.objects.filter(id=cliente_id).get()
-            ordem_obj = ordens.objects.filter(cliente_ordem__id = cliente_ord).all()
+            ordem_obj = ordens.objects.filter(cliente_ordem__id = cliente_id).all()
             tot_ordem = 0
             for ordem_obj in ordens:
                 tot_ordem = tot_ordem + ordem_obj.total
