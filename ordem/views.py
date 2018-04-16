@@ -362,11 +362,11 @@ def total_ordem(request):
     if request.user.is_authenticated():
        if request.method == 'POST' and request.POST.get('cliente_id') != None :
             cliente_id = request.POST.get('cliente_id')
-            cli_ordem = cliente.objects.filter(id=cliente_id).get()
-            ordem_obj = ordens.objects.filter(cliente_ordem__id = cliente_id).all()
+            cliente_ord = cliente.objects.filter(id=cliente_id).get()
+            ordem_obj = ordens.objects.filter(cliente_ordem__id = cliente_ord).all()
             tot_ordem = 0
-            for ordens in ordem_obj:
-                tot_ordem = tot_ordem + ordens.total
+            for ordem_obj in ordens:
+                tot_ordem = tot_ordem + ordem_obj.total
             num_ordens = ordens.objects.filter(cliente_ordem = cliente_id).count()
             return render(request, 'total_ordem.html', {'title':'Total em Ordens','num_ordens':num_ordens, 'cli_ordem':cli_ordem, 'cliente_id':cliente_id, 'tot_ordem':tot_ordem})
            
