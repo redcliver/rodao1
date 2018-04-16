@@ -169,6 +169,7 @@
     <Content Include="funcionario\templates\edit_func.html" />
     <Content Include="funcionario\templates\funcionario.html" />
     <Content Include="ordem\templates\pdf.html" />
+    <Content Include="ordem\templates\pre_imprimir.html" />
     <Content Include="ordem\templates\ver_ordem.html" />
     <Content Include="Procfile">
       <SubType>Code</SubType>

@@ -1,15 +1,17 @@
 {
   "ExpandedNodes": [
     "",
-    "\\home",
-    "\\home\\static",
-    "\\home\\static\\img",
-    "\\home\\templates",
+    "\\cliente\\templates",
+    "\\env",
+    "\\env\\Lib",
+    "\\env\\Lib\\site-packages",
+    "\\env\\Lib\\site-packages\\pylint",
+    "\\env\\Lib\\site-packages\\pylint\\test",
+    "\\env\\Lib\\site-packages\\pylint\\test\\input",
     "\\ordem",
-    "\\static",
-    "\\static\\app\\content",
-    "\\static\\img"
+    "\\ordem\\templates",
+    "\\rodao"
   ],
-  "SelectedNode": "\\static\\img\\imprimir.png",
+  "SelectedNode": "\\ordem\\views.py",
   "PreviewInSolutionExplorer": false
 }
