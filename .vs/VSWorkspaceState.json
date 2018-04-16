@@ -1,10 +1,15 @@
 {
   "ExpandedNodes": [
     "",
+    "\\home",
+    "\\home\\static",
+    "\\home\\static\\img",
+    "\\home\\templates",
     "\\ordem",
     "\\static",
+    "\\static\\app\\content",
     "\\static\\img"
   ],
-  "SelectedNode": "\\ordem\\printing.py",
+  "SelectedNode": "\\static\\img\\imprimir.png",
   "PreviewInSolutionExplorer": false
 }

@@ -41,7 +41,7 @@
                     </div>
                 </div>
             </form>
-            <form method="GET">
+            <form method="get">
                 {% if ordens_cliente %}
                 <div class="row">
                     <table class="table">
@@ -56,28 +56,28 @@
                         </thead>
                         <tbody>
                             {% for ordens in ordens_cliente %}
-                            {% if ordens.estado == '1' %}
-                            <tr>
-                                <td>{{ordens.id}}</td>
-                                <td>{{ordens.data_abertura|date:"d/m/Y"}}</td>
-                                <td>{{ordens.cliente_ordem}}</td>
-                                <td>{{ordens.total}}</td>
-                                <td>{{ordens.get_estado_display}}</td>
-                                <td><button class="btn btn-default" value="{{ordens.id}}" name="ordem_id" formaction="/ordem/editar" type="submit">Editar</button></td>
-                                <td><button type="submit" name="ordem_id" value="{{ordens.id}}" formaction="/ordem/imprimir"><img src="{% static '/img/imprimir.png' %}" /></button></td>
-                            </tr>
-                            {% endif %}
-                            {% if ordens.estado == '2' %}
-                            <tr>
-                                <td>{{ordens.id}}</td>
-                                <td>{{ordens.data_abertura|date:"d/m/Y"}}</td>
-                                <td>{{ordens.cliente_ordem}}</td>
-                                <td>{{ordens.total}}</td>
-                                <td>{{ordens.get_estado_display}}</td>
-                                <td><button class="btn btn-default" value="{{ordens.id}}" name="ordem_id" formaction="/ordem/ver" type="submit">Ver</button></td>
-                                <td><button type="submit" name="ordem_id" value="{{ordens.id}}" formaction="/ordem/imprimir"><img src="{% static '/img/imprimir.png' %}" /></button></td>
-                            </tr>
-                            {% endif %}
+                                {% if ordens.estado == '1' %}
+                                <tr>
+                                    <td>{{ordens.id}}</td>
+                                    <td>{{ordens.data_abertura|date:"d/m/Y"}}</td>
+                                    <td>{{ordens.cliente_ordem}}</td>
+                                    <td>{{ordens.total}}</td>
+                                    <td>{{ordens.get_estado_display}}</td>
+                                    <td><button class="btn btn-default" value="{{ordens.id}}" name="ordem_id" formaction="/ordem/editar" type="submit">Editar</button></td>
+                                    <td><button type="submit" name="ordem_id" value="{{ordens.id}}" formaction="/ordem/pre_imprimir"><img src="{% static '/img/imprimir.png' %}" /></button></td>
+                                </tr>
+                                {% endif %}
+                                {% if ordens.estado == '2' %}
+                                <tr>
+                                    <td>{{ordens.id}}</td>
+                                    <td>{{ordens.data_abertura|date:"d/m/Y"}}</td>
+                                    <td>{{ordens.cliente_ordem}}</td>
+                                    <td>{{ordens.total}}</td>
+                                    <td>{{ordens.get_estado_display}}</td>
+                                    <td><button class="btn btn-default" value="{{ordens.id}}" name="ordem_id" formaction="/ordem/ver" type="submit">Ver</button></td>
+                                    <td><button type="submit" name="ordem_id" value="{{ordens.id}}" formaction="/ordem/pre_imprimir"><img src="{% static '/img/imprimir.png' %}" /></button></td>
+                                </tr>
+                                {% endif %}
                             {% endfor %}
                         </tbody>
                     </table>

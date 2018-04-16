@@ -41,17 +41,21 @@
                  color: #333; /* old IE */
                  background-color: #fff; /* Modern Browsers */
              }
-             table, td, th {
-                 border: 1px solid black;
-             }
-
+             
              table {
                  border-collapse: collapse;
                  width: 100%;
              }
+             th, td {
+                 border-bottom: 1px solid #282828;
+             }
 
              th {
                  text-align: left;
+             }
+
+             td {
+                 font-weight: normal;
              }
 
              .direita{
@@ -87,16 +91,16 @@
                     </tr>
                     </thead>
                     <tbody>
+                        {% for serv_item in serv_obj %}
                         <tr>
-                            {% for serv_item in serv_obj %}
-                                <th>{{serv_item.id}}</th>
-                                <th>{{serv_item.serv_item}}</th>
-                                <th>{{serv_item.func}}</th>
-                                <th>R$ {{serv_item.serv_item.valor}}</th>
-                                <th>{{serv_item.quantidade}} Un.</th>
-                                <th>R$ {{serv_item.total}}</th>
-                            {% endfor %}
+                            <td>{{serv_item.id}}</td>
+                            <td>{{serv_item.serv_item}}</td>
+                            <td>{{serv_item.func}}</td>
+                            <td>R$ {{serv_item.serv_item.valor}}</td>
+                            <td>{{serv_item.quantidade}} Un.</td>
+                            <td>R$ {{serv_item.total}}</td>
                         </tr>
+                        {% endfor %}
                     </tbody>
                 </table>
                 <hr class='hrItem' />  
@@ -114,22 +118,27 @@
                     </tr>
                     </thead>
                     <tbody>
+                        {% for prod_item in prod_obj %}
                         <tr>
-                            {% for prod_item in prod_obj %}
-                                <th>{{prod_item.id}}</th>
-                                <th>{{prod_item.prod_item}}</th>
-                                <th>R$ {{prod_item.serv_item.valor}}</th>
-                                <th>{{prod_item.quantidade}} Un.</th>
-                                <th>R$ {{prod_item.total}}</th>
-                            {% endfor %}
+                            <td>{{prod_item.id}}</td>
+                            <td>{{prod_item.prod_item}}</td>
+                            <td>R$ {{prod_item.prod_item.valor_venda}}</td>
+                            <td>{{prod_item.quantidade}} Un.</td>
+                            <td>R$ {{prod_item.total}}</td>
                         </tr>
+                        {% endfor %}
                     </tbody>
                 </table>
                 <hr class='hrItem' />  
                 {% endif %}
             </div>
         </div>
-        <footer><h2 class="direita">Total: R$ {{ordem.total}}</h2></footer>
+        <footer>
+            <div class="row">
+                <h2 class="direita">Total: R$ {{ordem.total}}</h2>
+                <h3>________________________<br />{{nome_orc}}<br />{{hoje}}</h3>
+            </div>
+        </footer>
         
     </body>
 

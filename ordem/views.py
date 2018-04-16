@@ -22,13 +22,16 @@ class GeneratePdf(View):
     def get(self, request, *args, **kwargs):
         template = get_template('pdf.html')
         os_id = request.GET.get('ordem_id')
+        nome_orc = request.GET.get('nome_orc')
         ordem_obj = ordens.objects.filter(id=os_id).get()
         serv_obj = ordem_obj.serv_item.all()
         prod_obj = ordem_obj.prod_item.all()
+        hoje = hoje = datetime.now().strftime('%d/%m/%Y')
         try:
             fechamento = ordem_obj.data_fechamento.strftime('%d/%m/%Y')
         except:
             fechamento = " "
+
         context = {
                 "ordem_cli": ordem_obj.cliente_ordem,
                 "ordem_id": ordem_obj.id,
@@ -38,6 +41,8 @@ class GeneratePdf(View):
                 "ordem": ordem_obj,
                 "serv_obj": serv_obj,
                 "prod_obj": prod_obj,
+                "hoje": hoje,
+                "nome_orc": nome_orc,
             }
         html = template.render(context)
         pdf = render_to_pdf('pdf.html', context)
@@ -267,6 +272,15 @@ def add_prod(request):
             funcionarios = funcionario.objects.all()
             return render(request, 'edit_ordem.html', {'title':'Abrir Ordem', 'ordem_obj':ordem_obj, 'produtos1':produtos1, 'servicos1':servicos1, 'produtos':produtos, 'servicos':servicos, 'cliente_id':cliente_id, 'funcionarios':funcionarios})
         return render(request, 'edit_ordem.html', {'title':'Editar Ordens', 'clientes':clientes})
+    else:
+        return render(request, 'home/erro.html', {'title':'Erro'})
+
+def pre_imprimir(request):
+    if request.user.is_authenticated():
+        if request.method == 'GET' and request.GET.get('ordem_id') != None:
+            ordem_id = request.GET.get('ordem_id')
+            return render(request, 'pre_imprimir.html', {'title':'Imprimir Ordem', 'ordem_id':ordem_id})
+        return render(request, 'pre_imprimir.html', {'title':'Imprimir Ordem'})
     else:
         return render(request, 'home/erro.html', {'title':'Erro'})
     

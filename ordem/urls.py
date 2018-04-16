@@ -8,6 +8,7 @@ urlpatterns = [
     url(r'^abrir', views.abrir),
     url(r'^editar', views.editar),
     url(r'^imprimir/$', views.GeneratePdf.as_view()),
+    url(r'^pre_imprimir', views.pre_imprimir),
     url(r'^ver', views.ver),
     url(r'^add_serv', views.add_serv),
     url(r'^add_prod', views.add_prod),
