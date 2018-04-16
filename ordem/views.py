@@ -176,7 +176,7 @@ def abrir(request):
 
 def editar(request):
     if request.user.is_authenticated():
-       if request.method == 'GET' and request.GET.get('ordem_id') != None :
+       if request.method == 'GET' and request.GET.get('ordem_id') != None:
             ordem_id = request.GET.get('ordem_id')
             cliente_id = request.GET.get('cliente_id')
             ordem_obj = ordens.objects.filter(id = ordem_id).get()
@@ -187,6 +187,48 @@ def editar(request):
             funcionarios = funcionario.objects.all()
             return render(request, 'edit_ordem.html', {'title':'Editar Ordens', 'ordem_obj':ordem_obj, 'produtos1':produtos1, 'servicos1':servicos1, 'produtos':produtos, 'servicos':servicos, 'cliente_id':cliente_id, 'funcionarios':funcionarios})
            
+    else:
+        return render(request, 'home/erro.html', {'title':'Erro'})
+
+def cancellar(request):
+    if request.user.is_authenticated():
+       if request.method == 'POST' and request.POST.get('prod_item') != None:
+            prod_item_id = request.POST.get('prod_item')
+            ordem_id = request.POST.get('ordem_id')
+            cliente_id = request.POST.get('cliente_id')
+            prod_item_obj = produto_item.objects.filter(id = prod_item_id).get()
+            prod_preco = Decimal(prod_item_obj.total)
+            prod_item_obj.delete()
+            ordem_obj = ordens.objects.filter(id=ordem_id).get()
+            ordem_obj.total = Decimal(ordem_obj.total) - prod_preco
+            ordem_obj.save()
+            produtos1 = ordem_obj.prod_item.all()
+            servicos1 = ordem_obj.serv_item.all()
+            servicos = servico.objects.all()
+            produtos = produto.objects.all()
+            funcionarios = funcionario.objects.all()
+            return render(request, 'edit_ordem.html', {'title':'Editar Ordens', 'ordem_obj':ordem_obj, 'produtos1':produtos1, 'servicos1':servicos1, 'produtos':produtos, 'servicos':servicos, 'cliente_id':cliente_id, 'funcionarios':funcionarios})        
+    else:
+        return render(request, 'home/erro.html', {'title':'Erro'})
+
+def cancelar(request):
+    if request.user.is_authenticated():
+       if request.method == 'POST' and request.POST.get('serv_item') != None:
+            serv_item_id = request.POST.get('serv_item')
+            ordem_id = request.POST.get('ordem_id')
+            cliente_id = request.POST.get('cliente_id')
+            serv_item_obj = servico_item.objects.filter(id = serv_item_id).get()
+            serv_preco = Decimal(serv_item_obj.total)
+            serv_item_obj.delete()
+            ordem_obj = ordens.objects.filter(id=ordem_id).get()
+            ordem_obj.total = Decimal(ordem_obj.total) - serv_preco
+            ordem_obj.save()
+            produtos1 = ordem_obj.prod_item.all()
+            servicos1 = ordem_obj.serv_item.all()
+            servicos = servico.objects.all()
+            produtos = produto.objects.all()
+            funcionarios = funcionario.objects.all()
+            return render(request, 'edit_ordem.html', {'title':'Editar Ordens', 'ordem_obj':ordem_obj, 'produtos1':produtos1, 'servicos1':servicos1, 'produtos':produtos, 'servicos':servicos, 'cliente_id':cliente_id, 'funcionarios':funcionarios})        
     else:
         return render(request, 'home/erro.html', {'title':'Erro'})
 

@@ -70,7 +70,7 @@
                                     <td>R$ {{serv_item.serv_item.valor}}</td>
                                     <td>{{serv_item.quantidade}} Un.</td>
                                     <td>R$ {{serv_item.total}}</td>
-                                    <td><button type="button" data-id="{{serv_item.id}}" class="btn btn-default editButton"><img src="{% static '/img/editar.png' %}" /></button></td>
+                                    <td><button type="submit" name="serv_item" value="{{serv_item.id}}" formaction="/ordem/cancelar" class="btn btn-default editButton"><img src="{% static '/img/cancel.png' %}" /></button></td>
                                 </tr>
                                 {% endfor %}
                             </tbody>
@@ -103,7 +103,7 @@
                                     <td>R$ {{prod_item.prod_item.valor_venda}}</td>
                                     <td>{{prod_item.quantidade}} Un.</td>
                                     <td>R$ {{prod_item.total}}</td>
-                                    <td><button class="btn btn-default" value="" name="id" type="submit">Editar</button></td>
+                                    <td><button type="submit" name="prod_item" value="{{prod_item.id}}" formaction="/ordem/cancellar"  class="btn btn-default editButton"><img src="{% static '/img/cancel.png' %}" /></button></td>
                                 </tr>
                                 {% endfor %}
                             </tbody>
