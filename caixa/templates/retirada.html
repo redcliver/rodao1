@@ -36,18 +36,20 @@
     <section class="row text-center placeholders">
         <div class="jumbotron busca">
             <div class="container">
-                <h1>Total em caixa : R$ {{total}}</h1>
-                <hr />
-                <ul>
-                    <li><a href="/caixa/fechar"><img src="{% static '/img/fechar.png' %}" /></a></li>
-                    <li><a href="/caixa/retirada"><img src="{% static '/img/retirada.png' %}" /></a></li>
-                </ul>
-                <hr />
-                <ul>
-                    <li><a href="/caixa/inf_geral"><img src="{% static '/img/inf_geral.png' %}" /></a></li>
-                    <li><a href="/caixa/inf_mens"><img src="{% static '/img/inf_mens.png' %}" /></a></li>
-                    <li><a href="/caixa/inf_sem"><img src="{% static '/img/inf_sem.png' %}" /></a></li>
-                </ul>
+                 <form method="POST" class="col-md-6 col-md-offset-3">
+                    {% csrf_token %}
+                    <h2>Valor total em caixa : R$ {{total}}
+                    <br />
+                    <br />
+                    Valor da retirada : <input class="total" type="number" name="retirada" step="0.01" autofocus />
+                    <br />
+                    <br />
+                    Motivo : <input class="total" type="text" name="motivo" />
+                    <br />
+                    <br />
+                    <button class="btn btn-primary" type="submit">Salvar</button>
+                    </h2>
+                </form>
             </div>
         </div>
     </section>

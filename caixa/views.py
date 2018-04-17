@@ -15,3 +15,17 @@ def caixa1(request):
         return render(request, 'caixa.html', {'title':'Caixa', 'total':total, 'entrada':entrada, 'saida':saida})
     else:
         return render(request, 'home/erro.html', {'title':'Erro'})
+
+def retirada(request):
+    if request.user.is_authenticated():
+        try:
+            caixa = caixa_geral.objects.latest('id')
+            total = caixa.total
+        except:
+            caixa = caixa_geral(tipo=1, total=0, desc="abertura")
+            caixa.save()
+            total = caixa.total
+        
+        return render(request, 'retirada.html', {'title':'Retirada', 'total':total})
+    else:
+        return render(request, 'home/erro.html', {'title':'Erro'})
