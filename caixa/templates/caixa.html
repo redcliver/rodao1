@@ -15,9 +15,13 @@
     <section class="row text-center placeholders">
         <div class="jumbotron busca">
             <div class="container">
-                <h1>Total en caixa : R$ {{total}}</h1>
+                <h1>Total em caixa : R$ {{total}}</h1>
                 <hr>
-                
+                <ul>
+                    <li><a href="/caixa/inf_geral"><img src="{% static '/img/inf_geral.png' %}" /></a></li>
+                    <li><a href="/caixa/inf_mens"><img src="{% static '/img/inf_mens.png' %}" /></a></li>
+                    <li><a href="/caixa/inf_sem"><img src="{% static '/img/inf_sem.png' %}" /></a></li>
+                </ul>
             </div>
         </div>
     </section>
