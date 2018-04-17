@@ -60,10 +60,10 @@ class GeneratePdf(View):
 
 def ordem(request):
     if request.user.is_authenticated():
-        clientes = cliente.objects.all()
-        servicos = servico.objects.all()
-        produtos = produto.objects.all()
-        funcionarios = funcionario.objects.all()
+        clientes = cliente.objects.all().order_by('nome')
+        servicos = servico.objects.all().order_by('nome')
+        produtos = produto.objects.all().order_by('nome')
+        funcionarios = funcionario.objects.all().order_by('nome')
         hoje = datetime.now()
         return render(request, 'ordem.html', {'title':'Ordem', 'clientes':clientes, 'servicos':servicos, 'produtos':produtos,'funcionarios':funcionarios, 'hoje':hoje})
     else:
