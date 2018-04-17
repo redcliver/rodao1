@@ -234,7 +234,7 @@ def cancelar(request):
 
 def fechar(request):
     if request.user.is_authenticated():
-        clientes = cliente.objects.all()
+        clientes = cliente.objects.all().order_by('nome')
         ordens1 = ordens.objects.filter(estado=1).all()
         if request.method == 'GET' and request.GET.get('ordem_id') != None:
             ordem_id = request.GET.get('ordem_id')
