@@ -29,7 +29,7 @@
                         <select autofocus name="ordem_id" class="form-control">
                             <option disabled selected> -- Cliente  --  Data  --  Valor -- </option>
                             {% for ordens in ordens1 %}
-                            <option value="{{ordens.id}}">{{ordens.cliente_ordem}}  --  {{ordens.data_abertura|date:"d/m/Y"}}  --  R$ {{ordens.total}}</option>
+                                <option value="{{ordens.id}}">{{ordens.cliente_ordem}}  --  {{ordens.data_abertura|date:"d/m/Y"}}  --  R$ {{ordens.total}}</option>
                             {% endfor %}
                         </select>
                     </div>
