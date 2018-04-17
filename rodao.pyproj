@@ -160,6 +160,7 @@
     <Folder Include="servico\templates\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="caixa\templates\retirada.html" />
     <Content Include="caixa\templates\caixa.html" />
     <Content Include="contas\templates\busca_conta.html" />
     <Content Include="contas\templates\pagar.html" />

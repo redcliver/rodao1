@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from caixa.models import caixa_geral
+from decimal import *
+
 # Create your views here.
 def caixa1(request):
     if request.user.is_authenticated():
@@ -25,7 +27,14 @@ def retirada(request):
             caixa = caixa_geral(tipo=1, total=0, desc="abertura")
             caixa.save()
             total = caixa.total
-        
+        if request.method == 'POST' and request.POST.get('retirada') != None:
+            valor_ret = request.POST.get('retirada')
+            desc = request.POST.get('motivo')
+            total = caixa.total - Decimal(valor_ret)
+            nova_op = caixa_geral(total=total, tipo=2, desc=desc)
+            nova_op.save()
+            msg = "Retirada concluida com sucesso."
+            return render(request, 'home/index.html', {'title':'Home', 'msg':msg})
         return render(request, 'retirada.html', {'title':'Retirada', 'total':total})
     else:
         return render(request, 'home/erro.html', {'title':'Erro'})
