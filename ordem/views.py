@@ -60,10 +60,10 @@ class GeneratePdf(View):
 
 def ordem(request):
     if request.user.is_authenticated():
-        clientes = cliente.objects.order_by('nome')
-        servicos = servico.objects.order_by('nome')
-        produtos = produto.objects.order_by('nome')
-        funcionarios = funcionario.objects.order_by('nome')
+        clientes = cliente.objects.all().order_by('nome')
+        servicos = servico.objects.all().order_by('nome')
+        produtos = produto.objects.all().order_by('nome')
+        funcionarios = funcionario.objects.all().order_by('nome')
         hoje = datetime.now()
         return render(request, 'ordem.html', {'title':'Ordem', 'clientes':clientes, 'servicos':servicos, 'produtos':produtos,'funcionarios':funcionarios, 'hoje':hoje})
     else:
@@ -71,7 +71,7 @@ def ordem(request):
 
 def busca(request):
     if request.user.is_authenticated():
-        clientes = cliente.objects.all()
+        clientes = cliente.objects.all().order_by('nome')
         if request.method == 'POST' and request.POST.get('cliente_id') != None:
             cliente_id = request.POST.get('cliente_id')
             ordens_cliente = ordens.objects.filter(cliente_ordem__id=cliente_id).all().order_by('-id')
@@ -89,9 +89,9 @@ def abrir(request):
             ordem_obj.save()
             produtos1 = ordem_obj.prod_item.all()
             servicos1 = ordem_obj.serv_item.all()
-            servicos = servico.objects.all()
-            produtos = produto.objects.all()
-            funcionarios = funcionario.objects.all()
+            servicos = servico.objects.all().order_by('nome')
+            produtos = produto.objects.all().order_by('nome')
+            funcionarios = funcionario.objects.all().order_by('nome')
             return render(request, 'edit_ordem.html', {'title':'Abrir Ordem', 'ordem_obj':ordem_obj, 'produtos1':produtos1, 'servicos1':servicos1, 'produtos':produtos, 'servicos':servicos, 'cliente_id':cliente_id, 'funcionarios':funcionarios})
         elif request.method == 'POST' and request.POST.get('cliente_id') != None and request.POST.get('servico_id') != None and request.POST.get('funcionario_id') != None and request.POST.get('produto_id') == None:
             cliente_id = request.POST.get('cliente_id')
@@ -113,8 +113,8 @@ def abrir(request):
             ordem_obj.save()
             produtos1 = ordem_obj.prod_item.all()
             servicos1 = ordem_obj.serv_item.all()
-            servicos = servico.objects.all()
-            produtos = produto.objects.all()
+            servicos = servico.objects.all().order_by('nome')
+            produtos = produto.objects.all().order_by('nome')
             funcionarios = funcionario.objects.all()
             return render(request, 'edit_ordem.html', {'title':'Abrir Ordem', 'ordem_obj':ordem_obj, 'produtos1':produtos1, 'servicos1':servicos1, 'produtos':produtos, 'servicos':servicos, 'cliente_id':cliente_id, 'funcionarios':funcionarios})
         elif request.method == 'POST' and request.POST.get('cliente_id') != None and request.POST.get('servico_id') == None and request.POST.get('produto_id') != None:
@@ -135,8 +135,8 @@ def abrir(request):
             ordem_obj.save()
             produtos1 = ordem_obj.prod_item.all()
             servicos1 = ordem_obj.serv_item.all()
-            servicos = servico.objects.all()
-            produtos = produto.objects.all()
+            servicos = servico.objects.all().order_by('nome')
+            produtos = produto.objects.all().order_by('nome')
             funcionarios = funcionario.objects.all()
             return render(request, 'edit_ordem.html', {'title':'Abrir Ordem', 'ordem_obj':ordem_obj, 'produtos1':produtos1, 'servicos1':servicos1, 'produtos':produtos, 'servicos':servicos, 'cliente_id':cliente_id, 'funcionarios':funcionarios})
         elif request.method == 'POST' and request.POST.get('cliente_id') != None and request.POST.get('servico_id') != None and request.POST.get('produto_id') != None:
@@ -167,9 +167,9 @@ def abrir(request):
             ordem_obj.save()
             produtos1 = ordem_obj.prod_item.all()
             servicos1 = ordem_obj.serv_item.all()
-            servicos = servico.objects.all()
-            produtos = produto.objects.all()
-            funcionarios = funcionario.objects.all()
+            servicos = servico.objects.all().order_by('nome')
+            produtos = produto.objects.all().order_by('nome')
+            funcionarios = funcionario.objects.all().order_by('nome')
             return render(request, 'edit_ordem.html', {'title':'Abrir Ordem', 'ordem_obj':ordem_obj, 'produtos1':produtos1, 'servicos1':servicos1, 'produtos':produtos, 'servicos':servicos, 'cliente_id':cliente_id, 'funcionarios':funcionarios})
     else:
         return render(request, 'home/erro.html', {'title':'Erro'})
@@ -182,9 +182,9 @@ def editar(request):
             ordem_obj = ordens.objects.filter(id = ordem_id).get()
             produtos1 = ordem_obj.prod_item.all()
             servicos1 = ordem_obj.serv_item.all()
-            servicos = servico.objects.all()
-            produtos = produto.objects.all()
-            funcionarios = funcionario.objects.all()
+            servicos = servico.objects.all().order_by('nome')
+            produtos = produto.objects.all().order_by('nome')
+            funcionarios = funcionario.objects.all().order_by('nome')
             return render(request, 'edit_ordem.html', {'title':'Editar Ordens', 'ordem_obj':ordem_obj, 'produtos1':produtos1, 'servicos1':servicos1, 'produtos':produtos, 'servicos':servicos, 'cliente_id':cliente_id, 'funcionarios':funcionarios})
            
     else:
@@ -204,9 +204,9 @@ def cancellar(request):
             ordem_obj.save()
             produtos1 = ordem_obj.prod_item.all()
             servicos1 = ordem_obj.serv_item.all()
-            servicos = servico.objects.all()
-            produtos = produto.objects.all()
-            funcionarios = funcionario.objects.all()
+            servicos = servico.objects.all().order_by('nome')
+            produtos = produto.objects.all().order_by('nome')
+            funcionarios = funcionario.objects.all().order_by('nome')
             return render(request, 'edit_ordem.html', {'title':'Editar Ordens', 'ordem_obj':ordem_obj, 'produtos1':produtos1, 'servicos1':servicos1, 'produtos':produtos, 'servicos':servicos, 'cliente_id':cliente_id, 'funcionarios':funcionarios})        
     else:
         return render(request, 'home/erro.html', {'title':'Erro'})
@@ -225,9 +225,9 @@ def cancelar(request):
             ordem_obj.save()
             produtos1 = ordem_obj.prod_item.all()
             servicos1 = ordem_obj.serv_item.all()
-            servicos = servico.objects.all()
-            produtos = produto.objects.all()
-            funcionarios = funcionario.objects.all()
+            servicos = servico.objects.all().order_by('nome')
+            produtos = produto.objects.all().order_by('nome')
+            funcionarios = funcionario.objects.all().order_by('nome')
             return render(request, 'edit_ordem.html', {'title':'Editar Ordens', 'ordem_obj':ordem_obj, 'produtos1':produtos1, 'servicos1':servicos1, 'produtos':produtos, 'servicos':servicos, 'cliente_id':cliente_id, 'funcionarios':funcionarios})        
     else:
         return render(request, 'home/erro.html', {'title':'Erro'})
@@ -281,9 +281,9 @@ def add_serv(request):
             ordens_cliente = ordens.objects.filter(cliente_ordem__id=cliente_id, estado=2).all()
             produtos1 = ordem_obj.prod_item.all()
             servicos1 = ordem_obj.serv_item.all()
-            servicos = servico.objects.all()
-            produtos = produto.objects.all()
-            funcionarios = funcionario.objects.all()
+            servicos = servico.objects.all().order_by('nome')
+            produtos = produto.objects.all().order_by('nome')
+            funcionarios = funcionario.objects.all().order_by('nome')
             return render(request, 'edit_ordem.html', {'title':'Abrir Ordem', 'ordem_obj':ordem_obj, 'produtos1':produtos1, 'servicos1':servicos1, 'produtos':produtos, 'servicos':servicos, 'cliente_id':cliente_id, 'funcionarios':funcionarios})
         return render(request, 'edit_ordem.html', {'title':'Editar Ordens', 'clientes':clientes})
     else:
@@ -309,9 +309,9 @@ def add_prod(request):
             ordens_cliente = ordens.objects.filter(cliente_ordem__id=cliente_id, estado=2).all()
             produtos1 = ordem_obj.prod_item.all()
             servicos1 = ordem_obj.serv_item.all()
-            servicos = servico.objects.all()
-            produtos = produto.objects.all()
-            funcionarios = funcionario.objects.all()
+            servicos = servico.objects.all().order_by('nome')
+            produtos = produto.objects.all().order_by('nome')
+            funcionarios = funcionario.objects.all().order_by('nome')
             return render(request, 'edit_ordem.html', {'title':'Abrir Ordem', 'ordem_obj':ordem_obj, 'produtos1':produtos1, 'servicos1':servicos1, 'produtos':produtos, 'servicos':servicos, 'cliente_id':cliente_id, 'funcionarios':funcionarios})
         return render(request, 'edit_ordem.html', {'title':'Editar Ordens', 'clientes':clientes})
     else:
@@ -350,9 +350,9 @@ def ver(request):
             ordem_obj = ordens.objects.filter(id = ordem_id).get()
             produtos1 = ordem_obj.prod_item.all()
             servicos1 = ordem_obj.serv_item.all()
-            servicos = servico.objects.all()
-            produtos = produto.objects.all()
-            funcionarios = funcionario.objects.all()
+            servicos = servico.objects.all().order_by('nome')
+            produtos = produto.objects.all().order_by('nome')
+            funcionarios = funcionario.objects.all().order_by('nome')
             return render(request, 'ver_ordem.html', {'title':'Ver Ordens', 'ordem_obj':ordem_obj, 'produtos1':produtos1, 'servicos1':servicos1, 'produtos':produtos, 'servicos':servicos, 'cliente_id':cliente_id, 'funcionarios':funcionarios})
            
     else:
