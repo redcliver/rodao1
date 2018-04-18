@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'contas',
     'caixa',
     'graficos',
+    'chartjs',
     # Add your apps here to enable them
     'django.contrib.admin',
     'django.contrib.auth',
