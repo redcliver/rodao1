@@ -77,6 +77,6 @@ def inf_geral(request):
         for c in ordens.objects.filter(estado=2, metodo=3).all():
             total_cc = total_cc + c.total
         
-        return render(request, 'info_geral.html', {'title':'Retirada', 'dia_1':dia_1, 'total_dim':total_dim, 'total_cd':total_cd, 'total_cc':total_cc, 'caixa':caixa})
+        return render(request, 'info_geral.html', {'title':'Retirada', 'dia_1':dia_1, 'total_dim':total_dim, 'total_cd':total_cd, 'total_cc':total_cc, 'caixa':caixa, 'dia_1':dia_1})
     else:
         return render(request, 'home/erro.html', {'title':'Erro'})
