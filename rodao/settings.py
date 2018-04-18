@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'funcionario',
     'contas',
     'caixa',
+    'graficos',
     # Add your apps here to enable them
     'django.contrib.admin',
     'django.contrib.auth',

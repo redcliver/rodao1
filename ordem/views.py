@@ -26,7 +26,7 @@ class GeneratePdf(View):
         ordem_obj = ordens.objects.filter(id=os_id).get()
         serv_obj = ordem_obj.serv_item.all()
         prod_obj = ordem_obj.prod_item.all()
-        hoje = hoje = datetime.now().strftime('%d/%m/%Y')
+        hoje = datetime.now().strftime('%d/%m/%Y')
         try:
             fechamento = ordem_obj.data_fechamento.strftime('%d/%m/%Y')
         except:
