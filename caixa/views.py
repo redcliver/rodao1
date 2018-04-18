@@ -69,20 +69,14 @@ def inf_geral(request):
         total_dim = 0
         total_cd = 0
         total_cc = 0
-        total_fat = 0
-        total_ge = 0
-        receb =  0 
+        
         for a in ordens.objects.filter(estado=2, metodo=1).all():
             total_dim = total_dim + a.total
         for b in ordens.objects.filter(estado=2, metodo=2).all():
             total_cd = total_cd + b.total
         for c in ordens.objects.filter(estado=2, metodo=3).all():
             total_cc = total_cc + c.total
-        for d in ordens.objects.filter(estado=2).all():
-            total_fat = total_fat + d.total
-        for e in ordens.objects.filter(estado=1).all():
-            receb = receb + e.total
-        total_ge = total_fat + receb
-        return render(request, 'info_geral.html', {'title':'Retirada', 'dia_1':dia_1, 'total_dim':total_dim, 'total_cd':total_cd, 'total_cc':total_cc, 'total_fat':total_fat, 'receb':receb, 'caixa':caixa, 'total_ge':total_ge})
+        
+        return render(request, 'info_geral.html', {'title':'Retirada', 'dia_1':dia_1, 'total_dim':total_dim, 'total_cd':total_cd, 'total_cc':total_cc, 'caixa':caixa})
     else:
         return render(request, 'home/erro.html', {'title':'Erro'})
