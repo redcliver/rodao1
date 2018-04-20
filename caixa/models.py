@@ -10,7 +10,7 @@ class caixa_geral(models.Model):
     id = models.AutoField(primary_key=True)
     tipo = models.CharField(max_length=1, choices=TIPO)
     total = models.DecimalField(max_digits=10, decimal_places=2)
-    desc = models.CharField(max_length=100)
+    desc = models.CharField(max_length=200)
     data = models.DateTimeField(default=timezone.now)
     
     def __str__(self):
