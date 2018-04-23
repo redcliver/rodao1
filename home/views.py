@@ -17,6 +17,8 @@ def home(request):
         for e in conta.objects.filter(estado=1).all():
             if e.data.strftime('%d/%m/%Y') <= hoje:
                 contas = contas + 1
+            else:
+                contas = contas
         n_ordem = ordem_aberta
         n_contas =  contas
         return render(request, 'home/index.html', {'title':'Home', 'n_ordem':n_ordem, 'n_contas':n_contas})
