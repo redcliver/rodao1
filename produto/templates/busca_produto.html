@@ -48,7 +48,7 @@
                         </thead>
                         <tbody>
                             {% for produto in produtos %}
-                            {% if (produto.quantidade) <= (produto.qnt_min) %}
+                            {% if int(produto.quantidade) <= int(produto.qnt_min) %}
                                 <tr>
                                     <td>{{produto.nome}} **</td>
                                     <td>R$ {{produto.valor_venda}}</td>
