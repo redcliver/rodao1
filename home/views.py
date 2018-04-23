@@ -15,7 +15,7 @@ def home(request):
         contas = 0
         hoje = datetime.now().strftime('%d/%m/%Y')
         for e in conta.objects.filter(estado=1).all():
-            if e.data.strftime('%d/%m/%Y') >= hoje:
+            if e.data.strftime('%d/%m/%Y') <= hoje:
                 contas = contas + 1
         n_ordem = ordem_aberta
         n_contas =  contas
