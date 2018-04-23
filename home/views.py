@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth import authenticate
+from django.utils import timezone
+from datetime import datetime
 from ordem.models import ordens
 from contas.models import conta
 
@@ -10,12 +12,13 @@ def home(request):
             ordem_aberta = ordens.objects.filter(estado=1).count()
         except:
             ordem_aberta = 0
-        try:
-            contas = conta.objects.filter(estado=1).count()
-        except:
-            contas = 0
-        msg = "Ola, temos "+str(ordem_aberta)+" ordens em aberto;"
-        msg1 = "  - "+str(contas)+" Contas a pagar;"
-        return render(request, 'home/index.html', {'title':'Home', 'msg':msg, 'msg1':msg1})
+        contas = 0
+        hoje = datetime.now().strftime('%d/%m/%Y')
+        for e in conta.objects.filter(estado=1).all():
+            if e.data.strftime('%d/%m/%Y') <= hoje:
+                contas = contas + 1
+        n_ordem = ordem_aberta
+        n_contas =  contas
+        return render(request, 'home/index.html', {'title':'Home', 'n_ordem':n_ordem, 'n_contas':n_contas})
     else:
         return render(request, 'home/erro.html', {'title':'Erro'})

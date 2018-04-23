@@ -15,9 +15,13 @@
     <section class="row text-center placeholders">
         <div class="jumbotron busca">
             <div class="container">
-                <h1>{{msg}}</h1>
-                <span class="line"></span>
-                <h1>{{msg1}}</h1>
+                {% if msg %}
+                    <h2>{{msg}}</h2>
+                {% else %}
+                    <h3>Ola, Temos {{n_ordem}} em aberto.</h3>
+                    <hr>
+                    <h4>- {{n_contas}} <a href="/contas/pagar">Contas</a> a pagar hoje;</h4>
+                {% endif %}
             </div>
         </div>
     </section>
