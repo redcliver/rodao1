@@ -23,7 +23,7 @@ def home(request):
                 contas = contas
 
         for p in produto.objects.all():
-            if p.quantidade <= p.qnt_minima:
+            if p.quantidade <= p.qnt_min:
                 prod = prod + 1
             else:
                 prod = prod
