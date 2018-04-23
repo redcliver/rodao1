@@ -48,23 +48,23 @@
                         </thead>
                         <tbody>
                             {% for produto in produtos %}
-                                {% if produto.quantidade.valueOf() < produto.qnt_min.valueOf() or produto.quantidade.valueOf() == produto.qnt_min.valueOf() %}
-                                    <tr>
-                                        <td>{{produto.nome}} **</td>
-                                        <td>R$ {{produto.valor_venda}}</td>
-                                        <td>{{produto.quantidade}}</td>
-                                        <td>{{produto.qnt_min}}</td>
-                                        <td><button class="btn btn-default" value={{produto.id}} name="id" type="submit">Editar</button></td>
-                                    </tr>
-                                {% else %}
-                                    <tr>
-                                        <td>{{produto.nome}}</td>
-                                        <td>R$ {{produto.valor_venda}}</td>
-                                        <td>{{produto.quantidade}}</td>
-                                        <td>{{produto.qnt_min}}</td>
-                                        <td><button class="btn btn-default" value={{produto.id}} name="id" type="submit">Editar</button></td>
-                                    </tr>
-                                {% endif %}
+                            {% if produto.quantidade() <= produto.qnt_min() %}
+                                <tr>
+                                    <td>{{produto.nome}} **</td>
+                                    <td>R$ {{produto.valor_venda}}</td>
+                                    <td>{{produto.quantidade}}</td>
+                                    <td>{{produto.qnt_min}}</td>
+                                    <td><button class="btn btn-default" value={{produto.id}} name="id" type="submit">Editar</button></td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td>{{produto.nome}}</td>
+                                    <td>R$ {{produto.valor_venda}}</td>
+                                    <td>{{produto.quantidade}}</td>
+                                    <td>{{produto.qnt_min}}</td>
+                                    <td><button class="btn btn-default" value={{produto.id}} name="id" type="submit">Editar</button></td>
+                                </tr>
+                            {% endif %}
                             {% endfor %}
                         </tbody>
                     </table>
