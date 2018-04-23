@@ -13,9 +13,8 @@ def home(request):
         except:
             ordem_aberta = 0
         contas = 0
-        hoje = timezone.now()
         for e in conta.objects.filter(estado=1).all():
-            if e.data.strftime('%d/%m/%Y') <= hoje.strftime('%d/%m/%Y'):
+            if e.data <= timezone.now():
                 contas = contas + 1
             else:
                 contas = contas
