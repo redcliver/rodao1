@@ -19,8 +19,10 @@
                     <h2>{{msg}}</h2>
                 {% else %}
                     <h3>Ola, Temos {{n_ordem}} em aberto.</h3>
-                    <hr>
+                    <hr />
                     <h4>- {{n_contas}} <a href="/contas/pagar">Contas</a> a pagar hoje;</h4>
+                    <hr />
+                    <h4>- {{n_produto}} <a>Produtos</a> em estoque minimo;</h4>
                 {% endif %}
             </div>
         </div>
