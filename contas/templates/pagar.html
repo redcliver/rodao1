@@ -29,11 +29,11 @@
                         <select autofocus name="conta_id" class="form-control" required>
                             <option disabled selected> -- Conta -- Data -- Valor </option>
                             {% for conta in contas %}
-                            {% if (conta.data <= hoje) %}
-                                <option class="verm" value={{conta.id}}>{{conta.nome}} -- {{conta.data|date:"d/m/Y"}} -- R$ {{conta.valor}}</option>
-                            {% else %}
-                                <option value={{conta.id}}>{{conta.nome}} -- {{conta.data|date:"d/m/Y"}} -- R$ {{conta.valor}}</option>
-                            {% endif %}
+                                {% if (conta.data <= hoje) %}
+                                    <option class="verm" value={{conta.id}}>{{conta.nome}} -- {{conta.data|date:"d/m/Y"}} -- R$ {{conta.valor}}</option>
+                                {% else %}
+                                    <option value={{conta.id}}>{{conta.nome}} -- {{conta.data|date:"d/m/Y"}} -- R$ {{conta.valor}}</option>
+                                {% endif %}
                             {% endfor %}
                         </select>
                     </div>
