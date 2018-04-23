@@ -18,7 +18,7 @@
     <section class="row text-center placeholders">
         <div class="jumbotron busca">
             <div class="container">
-                <h1>Busca Cliente</h1>
+                <h1>Busca Produto</h1>
                 <form method="get">
                     <div class="form-row">
                         <div class="form-group col-md-10">
@@ -47,12 +47,21 @@
                         </thead>
                         <tbody>
                             {% for produto in produtos %}
-                            <tr>
-                                <td>{{produto.nome}}</td>
-                                <td>R$ {{produto.valor_venda}}</td>
-                                <td>{{produto.quantidade}}</td>
-                                <td><button class="btn btn-default" value={{produto.id}} name="id" type="submit">Editar</button></td>
-                            </tr>
+                            {% if produto.quantidade <= produto.qnt_min %}
+                                <tr class="verm">
+                                    <td>{{produto.nome}}</td>
+                                    <td>R$ {{produto.valor_venda}}</td>
+                                    <td>{{produto.quantidade}}</td>
+                                    <td><button class="btn btn-default" value={{produto.id}} name="id" type="submit">Editar</button></td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td>{{produto.nome}}</td>
+                                    <td>R$ {{produto.valor_venda}}</td>
+                                    <td>{{produto.quantidade}}</td>
+                                    <td><button class="btn btn-default" value={{produto.id}} name="id" type="submit">Editar</button></td>
+                                </tr>
+                            {% endif %}
                             {% endfor %}
                         </tbody>
                     </table>
