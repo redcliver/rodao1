@@ -13,6 +13,7 @@ def home(request):
         except:
             ordem_aberta = 0
         contas = 0
+        hoje = timezone.now()
         for e in conta.objects.filter(estado=1).all():
             if e.data <= timezone.now():
                 contas = contas + 1
@@ -20,6 +21,6 @@ def home(request):
                 contas = contas
         n_ordem = ordem_aberta
         n_contas =  contas
-        return render(request, 'home/index.html', {'title':'Home', 'n_ordem':n_ordem, 'n_contas':n_contas})
+        return render(request, 'home/index.html', {'title':'Home', 'n_ordem':n_ordem, 'n_contas':n_contas, 'hoje':hoje})
     else:
         return render(request, 'home/erro.html', {'title':'Erro'})
