@@ -91,11 +91,11 @@
                     <tbody>
                         {% for servico_item in serv_obj %}
                         <tr>
-                            <td>{{servico_item.id}}</td>
-                            <td>{{servico_item.serv_item}}</td>
-                            <td>R$ {{servico_item.serv_item.valor}}</td>
-                            <td>{{servico_item.quantidade}} Un.</td>
-                            <td>R$ {{servico_item.total}}</td>
+                            <td>{{servico_item.id|safe}}</td>
+                            <td>{{servico_item.serv_item|safe}}</td>
+                            <td>R$ {{servico_item.serv_item.valor|safe}}</td>
+                            <td>{{servico_item.quantidade|safe}} Un.</td>
+                            <td>R$ {{servico_item.total|safe}}</td>
                         </tr>
                         {% endfor %}
                     </tbody>
@@ -117,11 +117,11 @@
                     <tbody>
                         {% for produto_item in prod_obj %}
                         <tr>
-                            <td>{{produto_item.id}}</td>
-                            <td>{{produto_item.prod_item}}</td>
-                            <td>R$ {{produto_item.prod_item.valor_venda}}</td>
-                            <td>{{produto_item.quantidade}} Un.</td>
-                            <td>R$ {{produto_item.total}}</td>
+                            <td>{{produto_item.id|safe}}</td>
+                            <td>{{produto_item.prod_item|safe}}</td>
+                            <td>R$ {{produto_item.prod_item.valor_venda|safe}}</td>
+                            <td>{{produto_item.quantidade|safe}} Un.</td>
+                            <td>R$ {{produto_item.total|safe}}</td>
                         </tr>
                         {% endfor %}
                     </tbody>
