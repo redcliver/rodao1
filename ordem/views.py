@@ -344,9 +344,9 @@ def imprimir(request):
 
 def ver(request):
     if request.user.is_authenticated():
-       if request.method == 'POST' and request.POST.get('ordem_id') != None :
-            ordem_id = request.POST.get('ordem_id')
-            cliente_id = request.POST.get('cliente_id')
+       if request.method == 'GET' and request.GET.get('ordem_id') != None :
+            ordem_id = request.GET.get('ordem_id')
+            cliente_id = request.GET.get('cliente_id')
             ordem_obj = ordens.objects.filter(id = ordem_id).get()
             produtos1 = ordem_obj.prod_item.all()
             servicos1 = ordem_obj.serv_item.all()
@@ -377,5 +377,16 @@ def total_ordem(request):
             clientes = cliente.objects.all().order_by('nome')
             return render(request, 'total_ordem.html', {'title':'Total em Ordens','num_ordens':num_ordens,'num_ordens_1':num_ordens_1,'tot_ordem_1':tot_ordem_1, 'cliente_ord':cliente_ord, 'cliente_id':cliente_id, 'tot_ordem':tot_ordem, 'clientes':clientes})
            
+    else:
+        return render(request, 'home/erro.html', {'title':'Erro'})
+
+def excluir(request):
+    if request.user.is_authenticated():
+        if request.method == 'GET' and request.GET.get('ordem_id') != None:
+            od_id = request.GET.get('ordem_id')
+            od_obj = ordens.objects.filter(id=od_id).get()
+            od_obj.delete()
+            msg = "Ordem Excluida com sucesso"
+            return render(request, 'home/index.html', {'title':'Home', 'msg':msg})
     else:
         return render(request, 'home/erro.html', {'title':'Erro'})

@@ -20,16 +20,17 @@ def produto1(request):
 
 def busca1(request):
     if request.user.is_authenticated():
-        if request.method == 'GET' and request.GET.get('name') != None:
-            name = request.GET.get('name')
-            produtos = produto.objects.filter(nome__icontains=name)
-            return render(request, 'busca_produto.html', {'title':'Busca Produto', 'produtos':produtos})
+        pro1 = produto.objects.all()
+        if request.method == 'GET' and request.GET.get('p_id') != None:
+            prod_id = request.GET.get('p_id')
+            prods = produto.objects.filter(id=prod_id).get()
+            return render(request, 'busca_produto.html', {'title':'Busca Produto', 'prods':prods})
         elif request.method == 'POST':
             produto_id = request.POST.get('id')
             produto_obj = produto.objects.filter(id=produto_id).get()
 
             return render(request, 'edit_produto.html', {'title':'Editar Produto', 'produto_obj':produto_obj})
-        return render(request, 'busca_produto.html', {'title':'Busca Produto'})
+        return render(request, 'busca_produto.html', {'title':'Busca Produto', 'pro1':pro1})
     else:
         return render(request, 'home/erro.html', {'title':'Erro'})
 
