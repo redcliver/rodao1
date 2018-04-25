@@ -58,6 +58,45 @@ class GeneratePdf(View):
         return HttpResponse("Not found")
         return HttpResponse(pdf, content_type='application/pdf')
 
+class Total_mes(View):
+    def get(self, request, *args, **kwargs):
+        template = get_template('total_mes.html')
+        cliente_id = request.GET.get('cliente_id')
+        mes = request.GET.get('mes')
+        total1 = Decimal(0)
+        serv_obj = object
+        prod_obj = object
+        ordem_obj = ordens.objects.filter(cliente_ordem__id = cliente_id, estado='1', data_abertura__month=mes).all()
+        cli_obj = cliente.objects.filter(id=cliente_id).get()
+        for t in ordens.objects.filter(cliente_ordem__id = cliente_id, estado='1', data_abertura__month=mes).all():
+            total1 = total1 + Decimal(t.total)
+            serv_obj = list(t.serv_item.all())
+            prod_obj = list(t.prod_item.all())
+        hoje = datetime.now().strftime('%d/%m/%Y')
+
+        context = {
+                "total1":total1,
+                "mes":mes,
+                "cli_obj":cli_obj,
+                "ordem_obj": ordem_obj,
+                "hoje": hoje,
+                "serv_obj": serv_obj,
+                "prod_obj": prod_obj,
+            }
+        html = template.render(context)
+        pdf = render_to_pdf('total_mes.html', context)
+        if pdf:
+            response = HttpResponse(pdf, content_type='application/pdf')
+            filename = "OS_%s_Mensal.pdf" %(cli_obj.nome)
+            content = "inline-block; filename='%s'" %(filename)
+            download = request.GET.get("download")
+            if download:
+                content = "attachment; filename='%s'" %(filename)
+            response['Content-Disposition'] = content
+            return response
+        return HttpResponse("Not found")
+        return HttpResponse(pdf, content_type='application/pdf')
+
 def ordem(request):
     if request.user.is_authenticated():
         clientes = cliente.objects.all().order_by('nome')
@@ -388,27 +427,5 @@ def excluir(request):
             od_obj.delete()
             msg = "Ordem Excluida com sucesso"
             return render(request, 'home/index.html', {'title':'Home', 'msg':msg})
-    else:
-        return render(request, 'home/erro.html', {'title':'Erro'})
-
-def total_mes(request):
-    if request.user.is_authenticated():
-        if request.method == 'POST' and request.POST.get('cliente_id') != None and request.POST.get('mes') != None :
-            cliente_id = request.POST.get('cliente_id')
-            mes = request.POST.get('mes')
-            cliente_ord = cliente.objects.filter(id=cliente_id).get()
-            tot_ordem = 0
-            tot_ordem_1 = 0
-            for e in ordens.objects.filter(cliente_ordem__id = cliente_id, estado='1', data_abertura__month=mes).all():
-                tot_ordem = tot_ordem + e.total
-
-            for j in ordens.objects.filter(cliente_ordem__id = cliente_id, estado='2', data_abertura__month=mes).all():
-                tot_ordem_1 = tot_ordem_1 + j.total
-
-            num_ordens = ordens.objects.filter(cliente_ordem = cliente_id, estado='1', data_abertura__month=mes).count()
-
-            num_ordens_1 = ordens.objects.filter(cliente_ordem = cliente_id, estado='2', data_abertura__month=mes).count()
-            clientes = cliente.objects.all().order_by('nome')
-            return render(request, 'total_ordem.html', {'title':'Total em Ordens','num_ordens':num_ordens,'num_ordens_1':num_ordens_1,'tot_ordem_1':tot_ordem_1, 'cliente_ord':cliente_ord, 'cliente_id':cliente_id, 'tot_ordem':tot_ordem, 'clientes':clientes})
     else:
         return render(request, 'home/erro.html', {'title':'Erro'})
