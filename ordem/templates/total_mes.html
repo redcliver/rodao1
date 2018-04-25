@@ -115,7 +115,8 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for prod_item in prod_obj %}
+                        {% for t in prod_obj %}
+                        {% for prod_item in t %}
                         <tr>
                             <td>{{prod_item.id}}</td>
                             <td>{{prod_item.prod_item}}</td>
@@ -123,6 +124,7 @@
                             <td>{{prod_item.quantidade}} Un.</td>
                             <td>R$ {{prod_item.total}}</td>
                         </tr>
+                        {% endfor %}
                         {% endfor %}
                     </tbody>
                 </table>
