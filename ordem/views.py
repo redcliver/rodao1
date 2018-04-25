@@ -67,11 +67,11 @@ class Total_mes(View):
         serv_obj = object
         prod_obj = object
         ordem_obj = ordens.objects.filter(cliente_ordem__id = cliente_id, estado='1', data_abertura__month=mes).all()
+        serv_obj = ordem_obj.serv_item.all()
+        prod_obj = ordem_obj.prod_item.all()
         cli_obj = cliente.objects.filter(id=cliente_id).get()
         for t in ordens.objects.filter(cliente_ordem__id = cliente_id, estado='1', data_abertura__month=mes).all():
             total1 = total1 + Decimal(t.total)
-            serv_obj = list(t.serv_item.all())
-            prod_obj = list(t.prod_item.all())
         hoje = datetime.now().strftime('%d/%m/%Y')
 
         context = {
