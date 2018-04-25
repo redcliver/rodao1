@@ -89,7 +89,8 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for serv_item in serv_obj %}
+                        {% for servico_item in serv_obj %}
+                        {% for serv_item in servico_item %}
                         <tr>
                             <td>{{serv_item.id}}</td>
                             <td>{{serv_item.serv_item}}</td>
@@ -97,6 +98,7 @@
                             <td>{{serv_item.quantidade}} Un.</td>
                             <td>R$ {{serv_item.total}}</td>
                         </tr>
+                        {% endfor %}
                         {% endfor %}
                     </tbody>
                 </table>
@@ -115,8 +117,8 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for t in prod_obj %}
-                        {% for prod_item in t %}
+                        {% for produto_item in prod_obj %}
+                        {% for prod_item in produto_item %}
                         <tr>
                             <td>{{prod_item.id}}</td>
                             <td>{{prod_item.prod_item}}</td>
