@@ -70,9 +70,9 @@ class Total_mes(View):
         cli_obj = cliente.objects.filter(id=cliente_id).get()
         for t in ordens.objects.filter(cliente_ordem__id = cliente_id, estado='1', data_abertura__month=mes).all():
             total1 = total1 + Decimal(t.total)
-            for s in t.serv_item:
+            for s in t.servico_item:
                 serv_obj = list(s)
-            for p in t.prod_item:
+            for p in t.produto_item:
                 prod_obj = list(p)
         hoje = datetime.now().strftime('%d/%m/%Y')
 
