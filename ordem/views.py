@@ -71,7 +71,7 @@ class Total_mes(View):
         for t in ordens.objects.filter(cliente_ordem__id = cliente_id, estado='1', data_abertura__month=mes).all():
             total1 = total1 + Decimal(t.total)
             for servico_item in t.serv_item.all():
-                serv_obj = list(list(t.serv_item))
+                serv_obj = list(t.serv_item)
             for produto_item in t.prod_item.all():
                 prod_obj = list(produto_item)
         hoje = datetime.now().strftime('%d/%m/%Y')
