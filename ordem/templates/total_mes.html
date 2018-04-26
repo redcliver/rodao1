@@ -89,10 +89,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for serv_item in ordem_obj.serv_item.all %}
+                        {% for serv_item in ordem_obj.serv_item_set.all %}
                         {% for servico_item in serv_item %}
                         <tr>
-                            <td>{{servico_item}}</td>
+                            <td>{{serv_item}}</td>
                             <td>{{servico_item}}</td>
                             <td>R$ {{servico_item}}</td>
                             <td>{{serv_item.quantidade}} Un.</td>
