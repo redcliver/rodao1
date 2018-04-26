@@ -89,8 +89,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for serv_item in ordem_obj.serv_item_set.all %}
-                        {% for servico_item in serv_item %}
+                        {% for servico_item in ordem_obj.serv_item_set.all %}
                         <tr>
                             <td>{{serv_item}}</td>
                             <td>{{servico_item}}</td>
@@ -98,7 +97,6 @@
                             <td>{{serv_item.quantidade}} Un.</td>
                             <td>R$ {{serv_item.total}}</td>
                         </tr>
-                        {% endfor %}
                         {% endfor %}
                     </tbody>
                 </table>
