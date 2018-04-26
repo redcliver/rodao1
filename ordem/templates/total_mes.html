@@ -76,7 +76,6 @@
             <hr class='hrItem' />            
         </div>
             <div class="details">
-                {% if ordem_obj.serv_item %}
                 <label class="ordem">Serviços</label>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<br />
                 <table>
                     <thead>
@@ -100,7 +99,6 @@
                         {% endfor %}
                     </tbody>
                 </table>
-                {% endif %}
                 {% if ordem_obj.prod_item %}
                 <hr class='hrItem' />
                 <label class="ordem">Produtos</label>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<br />
