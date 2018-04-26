@@ -70,10 +70,6 @@ class Total_mes(View):
         cli_obj = cliente.objects.filter(id=cliente_id).get()
         for t in ordens.objects.filter(cliente_ordem__id = cliente_id, estado='1', data_abertura__month=mes).all():
             total1 = total1 + Decimal(t.total)
-            for servico_item in t.serv_item.all():
-                serv_obj = list(t.serv_item)
-            for produto_item in t.prod_item.all():
-                prod_obj = list(produto_item)
         hoje = datetime.now().strftime('%d/%m/%Y')
 
         context = {
@@ -82,7 +78,7 @@ class Total_mes(View):
                 "cli_obj":cli_obj,
                 "ordem_obj": ordem_obj,
                 "hoje": hoje,
-                "serv_obj": serv_obj,
+                "t": t,
                 "prod_obj": prod_obj,
             }
         html = template.render(context)
