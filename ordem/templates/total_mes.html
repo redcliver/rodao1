@@ -76,7 +76,7 @@
             <hr class='hrItem' />            
         </div>
             <div class="details">
-                {% if t %}
+                {% if ordem_obj.serv_item %}
                 <label class="ordem">Serviços</label>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<br />
                 <table>
                     <thead>
@@ -89,7 +89,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for serv_item in t %}
+                        {% for serv_item in ordem_obj.serv_item.all() %}
                         <tr>
                             <td>{{serv_item.id}}</td>
                             <td>{{serv_item.serv_item}}</td>
@@ -101,7 +101,7 @@
                     </tbody>
                 </table>
                 {% endif %}
-                {% if t %}
+                {% if ordem_obj.prod_item %}
                 <hr class='hrItem' />
                 <label class="ordem">Produtos</label>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<br />
                 <table>
@@ -115,7 +115,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for prod_item in t %}
+                        {% for prod_item in ordem_obj.prod_item.all() %}
                         <tr>
                             <td>{{prod_item.id}}</td>
                             <td>{{prod_item.prod_item}}</td>
