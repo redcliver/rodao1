@@ -89,7 +89,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for serv_item in ordem_obj.serv_item.all() %}
+                        {% for serv_item in ordem_obj.serv_item.all %}
                         <tr>
                             <td>{{serv_item.id}}</td>
                             <td>{{serv_item.serv_item}}</td>
@@ -115,7 +115,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for prod_item in ordem_obj.prod_item.all() %}
+                        {% for prod_item in ordem_obj.prod_item.all %}
                         <tr>
                             <td>{{prod_item.id}}</td>
                             <td>{{prod_item.prod_item}}</td>
