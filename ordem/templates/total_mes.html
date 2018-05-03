@@ -81,50 +81,24 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Serviço</th>
-                            <th>Valor Un.</th>
-                            <th>Qnt.</th>
-                            <th>Valor T.</th>
+                            <th>Data</th>
+                            <th>Cliente</th>
+                            <th>Total</th>
+                            <th>Estado</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {% for servico_item in ordem_obj.serv_item_set.all %}
+                        {% for ordens in ordens_cliente %}
                         <tr>
-                            <td>{{serv_item}}</td>
-                            <td>{{servico_item}}</td>
-                            <td>R$ {{servico_item}}</td>
-                            <td>{{serv_item.quantidade}} Un.</td>
-                            <td>R$ {{serv_item.total}}</td>
+                            <td>{{ordens.id}}</td>
+                            <td>{{ordens.data_abertura|date:"d/m/Y"}}</td>
+                            <td>{{ordens.cliente_ordem}}</td>
+                            <td>{{ordens.total}}</td>
+                            <td>{{ordens.get_estado_display}}</td>
                         </tr>
                         {% endfor %}
                     </tbody>
                 </table>
-                {% if ordem_obj.prod_item %}
-                <hr class='hrItem' />
-                <label class="ordem">Produtos</label>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<br />
-                <table>
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Produto</th>
-                            <th>Valor Un.</th>
-                            <th>Qnt.</th>
-                            <th>Valor T.</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for prod_item in ordem_obj.prod_item.all %}
-                        <tr>
-                            <td>{{prod_item.id}}</td>
-                            <td>{{prod_item.prod_item}}</td>
-                            <td>R$ {{prod_item.prod_item.valor_venda}}</td>
-                            <td>{{prod_item.quantidade}} Un.</td>
-                            <td>R$ {{prod_item.total}}</td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-                {% endif %}
             </div>
             <hr class='hrItem' />
         </div>
