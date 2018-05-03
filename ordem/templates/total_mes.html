@@ -84,17 +84,15 @@
                             <th>Data</th>
                             <th>Cliente</th>
                             <th>Total</th>
-                            <th>Estado</th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for ordens in ordem_obj %}
                         <tr>
-                            <td>{{ordens.id}}</td>
-                            <td>{{ordens.data_abertura|date:"d/m/Y"}}</td>
-                            <td>{{ordens.cliente_ordem}}</td>
-                            <td>{{ordens.total}}</td>
-                            <td>{{ordens.get_estado_display}}</td>
+                            <td width="10%">{{ordens.id}}</td>
+                            <td width="20%">{{ordens.data_abertura|date:"d/m/Y"}}</td>
+                            <td width="50%">{{ordens.cliente_ordem}}</td>
+                            <td width="20%">R$ {{ordens.total}}</td>
                         </tr>
                         {% endfor %}
                     </tbody>
