@@ -90,7 +90,7 @@ class Total_mes(View):
             mes = 'Novembro'
         elif mes_rec == '12':
             mes = 'Dezembro'
-        for t in ordens.objects.filter(cliente_ordem__id = cliente_id, estado='1', data_abertura__month=mes).all():
+        for t in ordens.objects.filter(cliente_ordem__id = cliente_id, estado='1', data_abertura__month=mes_rec).all():
             total1 = total1 + Decimal(t.total)
         hoje = datetime.now().strftime('%d/%m/%Y')
 
