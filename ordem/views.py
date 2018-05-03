@@ -65,7 +65,7 @@ class Total_mes(View):
         mes_rec = request.GET.get('mes')
         mes = str
         total1 = Decimal(0)
-        ordem_obj = ordens.objects.filter(cliente_ordem__id = cliente_id, estado='1', data_abertura__month=mes).all().order_by('data_abertura')
+        ordem_obj = ordens.objects.filter(cliente_ordem__id = cliente_id, estado='1', data_abertura__month=mes_rec).all().order_by('data_abertura')
         cli_obj = cliente.objects.filter(id=cliente_id).get()
         if mes_rec == '01':
             mes = Janeiro
