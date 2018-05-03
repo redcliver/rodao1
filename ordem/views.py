@@ -66,6 +66,30 @@ class Total_mes(View):
         total1 = Decimal(0)
         ordem_obj = ordens.objects.filter(cliente_ordem__id = cliente_id, estado='1', data_abertura__month=mes).all().order_by('data_abertura')
         cli_obj = cliente.objects.filter(id=cliente_id).get()
+        if mes == '01':
+            mes = Janeiro
+        elif mes == '02':
+            mes = Fevereiro
+        elif mes == '03':
+            mes = Março
+        elif mes == '04':
+            mes = Abril
+        elif mes == '05':
+            mes = Maio
+        elif mes == '06':
+            mes = Junho
+        elif mes == '07':
+            mes = Julho
+        elif mes == '08':
+            mes = Agosto
+        elif mes == '09':
+            mes = Setembro
+        elif mes == '10':
+            mes = Outubro
+        elif mes == '11':
+            mes = Novembro
+        elif mes == '12':
+            mes = Dezembro
         for t in ordens.objects.filter(cliente_ordem__id = cliente_id, estado='1', data_abertura__month=mes).all():
             total1 = total1 + Decimal(t.total)
         hoje = datetime.now().strftime('%d/%m/%Y')
