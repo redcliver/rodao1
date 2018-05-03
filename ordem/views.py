@@ -63,7 +63,6 @@ class Total_mes(View):
         template = get_template('total_mes.html')
         cliente_id = request.GET.get('cliente_id')
         mes_rec = request.GET.get('mes')
-        mes = str
         total1 = Decimal(0)
         ordem_obj = ordens.objects.filter(cliente_ordem__id = cliente_id, estado='1', data_abertura__month=mes_rec).all().order_by('data_abertura')
         cli_obj = cliente.objects.filter(id=cliente_id).get()
