@@ -62,33 +62,34 @@ class Total_mes(View):
     def get(self, request, *args, **kwargs):
         template = get_template('total_mes.html')
         cliente_id = request.GET.get('cliente_id')
+        mes_rec = request.GET.get('mes')
         mes = str
         total1 = Decimal(0)
         ordem_obj = ordens.objects.filter(cliente_ordem__id = cliente_id, estado='1', data_abertura__month=mes).all().order_by('data_abertura')
         cli_obj = cliente.objects.filter(id=cliente_id).get()
-        if request.GET.get('mes') == '01':
+        if mes_rec == '01':
             mes = Janeiro
-        elif request.GET.get('mes') == '02':
+        elif mes_rec == '02':
             mes = Fevereiro
-        elif request.GET.get('mes') == '03':
+        elif mes_rec == '03':
             mes = Março
-        elif request.GET.get('mes') == '04':
+        elif mes_rec == '04':
             mes = Abril
-        elif request.GET.get('mes') == '05':
+        elif mes_rec == '05':
             mes = Maio
-        elif request.GET.get('mes') == '06':
+        elif mes_rec == '06':
             mes = Junho
-        elif request.GET.get('mes') == '07':
+        elif mes_rec == '07':
             mes = Julho
-        elif request.GET.get('mes') == '08':
+        elif mes_rec == '08':
             mes = Agosto
-        elif request.GET.get('mes') == '09':
+        elif mes_rec == '09':
             mes = Setembro
-        elif request.GET.get('mes') == '10':
+        elif mes_rec == '10':
             mes = Outubro
-        elif request.GET.get('mes') == '11':
+        elif mes_rec == '11':
             mes = Novembro
-        elif request.GET.get('mes') == '12':
+        elif mes_rec == '12':
             mes = Dezembro
         for t in ordens.objects.filter(cliente_ordem__id = cliente_id, estado='1', data_abertura__month=mes).all():
             total1 = total1 + Decimal(t.total)
