@@ -88,13 +88,13 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for t in ordens_cliente %}
+                        {% for ordens in ordem_obj %}
                         <tr>
-                            <td>{{t.id}}</td>
-                            <td>{{t.data_abertura|date:"d/m/Y"}}</td>
-                            <td>{{t.cliente_ordem}}</td>
-                            <td>{{t.total}}</td>
-                            <td>{{t.get_estado_display}}</td>
+                            <td>{{ordens.id}}</td>
+                            <td>{{ordens.data_abertura|date:"d/m/Y"}}</td>
+                            <td>{{ordens.cliente_ordem}}</td>
+                            <td>{{ordens.total}}</td>
+                            <td>{{ordens.get_estado_display}}</td>
                         </tr>
                         {% endfor %}
                     </tbody>
