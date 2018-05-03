@@ -64,7 +64,7 @@ class Total_mes(View):
         cliente_id = request.GET.get('cliente_id')
         mes = request.GET.get('mes')
         total1 = Decimal(0)
-        ordem_obj = ordens.objects.filter(cliente_ordem__id = cliente_id, estado='1', data_abertura__month=mes).all().order_by('-data_abertura')
+        ordem_obj = ordens.objects.filter(cliente_ordem__id = cliente_id, estado='1', data_abertura__month=mes).all().order_by('data_abertura')
         cli_obj = cliente.objects.filter(id=cliente_id).get()
         for t in ordens.objects.filter(cliente_ordem__id = cliente_id, estado='1', data_abertura__month=mes).all():
             total1 = total1 + Decimal(t.total)
