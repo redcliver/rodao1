@@ -129,9 +129,15 @@ def ordem(request):
 def busca(request):
     if request.user.is_authenticated():
         clientes = cliente.objects.all().order_by('nome')
-        if request.method == 'POST' and request.POST.get('cliente_id') != None:
+        if request.method == 'POST' and request.POST.get('cliente_id') != None and request.POST.get('mes') == None:
             cliente_id = request.POST.get('cliente_id')
-            ordens_cliente = ordens.objects.filter(cliente_ordem__id=cliente_id).all().order_by('-id')
+            mes = datetime.now().strftime('%m')
+            ordens_cliente = ordens.objects.filter(cliente_ordem__id=cliente_id, data_abertura__month=mes).all().order_by('-id')
+            return render(request, 'busca_ordem.html', {'title':'Busca Ordens', 'clientes':clientes, 'ordens_cliente':ordens_cliente})
+        elif request.method == 'POST' and request.POST.get('cliente_id') != None and request.POST.get('mes') != None:
+            cliente_id = request.POST.get('cliente_id')
+            mes = request.POST.get('mes')
+            ordens_cliente = ordens.objects.filter(cliente_ordem__id=cliente_id, data_abertura__month=mes).all().order_by('-id')
             return render(request, 'busca_ordem.html', {'title':'Busca Ordens', 'clientes':clientes, 'ordens_cliente':ordens_cliente})
         return render(request, 'busca_ordem.html', {'title':'Busca Ordens', 'clientes':clientes})
     else:
@@ -445,5 +451,14 @@ def excluir(request):
             od_obj.delete()
             msg = "Ordem Excluida com sucesso"
             return render(request, 'home/index.html', {'title':'Home', 'msg':msg})
+    else:
+        return render(request, 'home/erro.html', {'title':'Erro'})
+
+def confirm(request):
+    if request.user.is_authenticated():
+        if request.method == 'POST' and request.POST.get('ordem_id') != None:
+            ordem_id = request.POST.get('ordem_id')
+            return render(request, 'confirmacao.html', {'title':'Imprimir Ordem', 'ordem_id':ordem_id})
+        return render(request, 'confirmacao.html', {'title':'Finalizar'})
     else:
         return render(request, 'home/erro.html', {'title':'Erro'})

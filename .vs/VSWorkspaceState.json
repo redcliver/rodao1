@@ -1,7 +1,6 @@
 {
   "ExpandedNodes": [
     "",
-    "\\cliente\\templates",
     "\\env",
     "\\env\\Lib",
     "\\env\\Lib\\site-packages",
@@ -9,8 +8,7 @@
     "\\env\\Lib\\site-packages\\pylint\\test",
     "\\env\\Lib\\site-packages\\pylint\\test\\input",
     "\\ordem",
-    "\\ordem\\templates",
-    "\\rodao"
+    "\\ordem\\templates"
   ],
   "SelectedNode": "\\ordem\\views.py",
   "PreviewInSolutionExplorer": false

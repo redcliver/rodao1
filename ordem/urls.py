@@ -17,5 +17,6 @@ urlpatterns = [
     url(r'^add_prod', views.add_prod),
     url(r'^total_ordem', views.total_ordem),
     url(r'^total_mes', views.Total_mes.as_view()),
+    url(r'^confirm', views.confirm),
     url(r'^fechar', views.fechar),
     ]
