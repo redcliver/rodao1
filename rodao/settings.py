@@ -29,7 +29,7 @@ SECRET_KEY = 'b86e710c-c483-4721-ab00-5ca6de87f65d'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'rodao.herokuapp.com',
+    'rodaolj.herokuapp.com',
     'localhost',
     ]
 
@@ -95,7 +95,7 @@ WSGI_APPLICATION = 'rodao.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'rodao',
+        'NAME': 'rodao1',
         'USER': 'postgres',
         'PASSWORD': 'igor3355',
         'HOST': '127.0.0.1',

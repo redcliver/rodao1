@@ -71,7 +71,7 @@ class Total_mes(View):
         elif mes_rec == '02':
             mes = 'Fevereiro'
         elif mes_rec == '03':
-            mes = 'Março'
+            mes = 'Marco'
         elif mes_rec == '04':
             mes = 'Abril'
         elif mes_rec == '05':
