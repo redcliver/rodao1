@@ -22,9 +22,9 @@ from django.conf.urls import include
 
 urlpatterns = [
     #Login
+    url(r'^login', LoginView.as_view(template_name='mainPage/login.html'), name="Login"),
+    url(r'^logout', LogoutView.as_view(template_name='mainPage/login.html'), name="Login"),
     url(r'^', include('loginPage.urls')),
-    url(r'^login', LoginView.as_view(template_name='loginPage/login.html'), name="Login"),
-    url(r'^logout', LogoutView.as_view(template_name='managePage/login.html'), name="Login"),
 
     url(r'^managePage/', include('managePage.urls')),
 

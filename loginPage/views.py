@@ -3,4 +3,4 @@ import datetime
 
 # Create your views here.
 def loginPage(request):
-    return render (request, 'loginPage/login.html', {'title':'Login'})
+    return render (request, 'mainPage/login.html', {'title':'Login'})
